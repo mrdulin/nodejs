@@ -1,6 +1,6 @@
 const http = require('http');
 const mysql = require('mysql');
-
+const work = require('./work');
 const port = 3000;
 const host = '127.0.0.1';
 
@@ -8,7 +8,8 @@ const connection = mysql.createConnection({
     host: host,
     user: 'root',
     password: 'root',
-    database: 'timetrack'
+    database: 'timetrack',
+    dateStrings: 'date'
 });
 
 const server = http.createServer((req, res) => {
@@ -16,23 +17,23 @@ const server = http.createServer((req, res) => {
         case 'POST':
             switch (req.url) {
                 case '/':
-                    work.add(db, req, res);
+                    work.add(connection, req, res);
                     break;
                 case 'archive':
-                    work.archive(db, req, res);
+                    work.archive(connection, req, res);
                     break;
                 case 'delete':
-                    work.delete(db, req, res);
+                    work.delete(connection, req, res);
                     break;
             }
             break;
         case 'GET':
             switch (req.url) {
                 case '/':
-                    work.show(db, req, res);
+                    work.show(connection, res);
                     break;
                 case '/archived':
-                    work.showArchived(db, req, res);
+                    work.showArchived(connection, res);
                     break;
             }
             break;

@@ -3,12 +3,12 @@ const fs = require('fs');
 
 exports.sendHtml = (res, html) => {
     res.setHeader('Content-Type', 'text/html');
-    res.setheader('Content-Length', Buffer.byteLenth(html));
+    res.setheader('Content-Length', Buffer.byteLength(html));
     res.end(html);
 };
 
-exports.formHtmlStream = (id, path, label) => {
-    let html = "<form action='" + path + "' method='" + POST + "'>"
+exports.actionHtml = (id, action, label) => {
+    let html = "<form action='" + action + "' method='POST'>"
         "<input type='hidden' name='id' value='" + id + "'/>" +
         "<input type='submit' value='" + label + "'/>" +
     "</form>";
@@ -51,5 +51,12 @@ exports.delete = (connection, req, res) => {
                 exports.show(connection, res);
             }
         );
+    });
+};
+
+
+exports.archive = (connection, req, res) => {
+    exports.parseReceiveData(req, () => {
+
     });
 };
