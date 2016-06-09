@@ -8,7 +8,7 @@ exports.sendHtml = (res, html) => {
 };
 
 exports.actionHtml = (id, action, label) => {
-    let html = "<form action='" + action + "' method='POST'>"
+    let html = "<form action='" + action + "' method='POST'>" +
         "<input type='hidden' name='id' value='" + id + "'/>" +
         "<input type='submit' value='" + label + "'/>" +
     "</form>";
@@ -92,21 +92,27 @@ exports.showArchived = (connection, res) => {
 
 
 exports.workHitListHtml = (rows) => {
-    let rowHtml = '';
     const rowLen = rows.length;
+    let rowHtml = '';
     for(let i = 0; i < rowLen; i++) {
-
+        rowHtml += '<tr>' +
+                '<td>'+ rows[i].date+'</td>'+
+                '<td>'+ rows[i].hours+'</td>'+
+                '<td>'+ rows[i].description +'</td>' +
+                (rows[i].archived ? '' : '<td>'+ exports.workArchiveForm(rows[i].id) +'</td>') +
+                '<td>'+ exports.workDeleteForm(rows[i].id)+'</td>' +
+            '</tr>';
     }
-    let html = '<table>'+
+  　let html = '<table>'+
         '<thead>'+
-            '<tr>'
+            '<tr>' +
                 '<th>Date</th>' +
                 '<th>Hours</th>' +
                 '<th>Description</th>' +
             '</tr>' +
         '</thead>' +
         '<tbody>'+
-            rows
+            rowHtml +
         '</tbody>'+
     '</table>';
 
@@ -122,4 +128,12 @@ exports.workFormHtml = () => {
     '</form>';
 
     return html;
+};
+
+exports.workArchiveForm = (id) => {
+    return exports.actionHtml(id, '/archive', 'Archive');
+};
+
+exports.workDeleteForm = (id) => {
+    return exports.actionHtml(id, '/delete', 'Delete');
 };

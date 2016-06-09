@@ -7,7 +7,7 @@ const host = '127.0.0.1';
 const connection = mysql.createConnection({
     host: host,
     user: 'root',
-    password: 'root',
+    password: '',
     database: 'timetrack',
     dateStrings: 'date'
 });
@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
             }
             break;
     }
-})
+});
 
 connection.query(
     'CREATE TABLE IF NOT EXISTS work (' +
