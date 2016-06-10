@@ -19,10 +19,10 @@ const server = http.createServer((req, res) => {
                 case '/':
                     work.add(connection, req, res);
                     break;
-                case 'archive':
+                case '/archive':
                     work.archive(connection, req, res);
                     break;
-                case 'delete':
+                case '/delete':
                     work.delete(connection, req, res);
                     break;
             }
