@@ -22,5 +22,8 @@
     "formidable": "^1.0.17",
     "mongoose": "^4.4.20",
     "mysql": "^2.11.0"
+  },
+  "devDependencies": {
+    "connect": "^3.4.1"
   }
 }
