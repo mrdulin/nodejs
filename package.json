@@ -18,13 +18,12 @@
   },
   "homepage": "https://github.com/mrdulin/node-core#readme",
   "dependencies": {
+    "body-parser": "^1.15.1",
+    "connect": "^3.4.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.13.4",
     "formidable": "^1.0.17",
     "mongoose": "^4.4.20",
     "mysql": "^2.11.0"
-  },
-  "devDependencies": {
-    "connect": "^3.4.1"
   }
 }
