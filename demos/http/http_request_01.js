@@ -3,10 +3,10 @@ const util = require('util');
 const querystring = require('querystring');
 
 const port = 8080;
-const requestBook = () => {
+const requestBook = (q, count = 1, cb) => {
     const params = querystring.stringify({
-        q: '计算机',
-        count: 1
+        q,
+        count
     })
     const options = {
         protocol: 'http:',
@@ -16,7 +16,7 @@ const requestBook = () => {
     };
 
     const req = http.request(options, (res) => {
-        let data;
+        let data = '';
         console.log(`status: ${res.statusCode}\n`);
         console.log(`headers: ${util.inspect(res.headers)}\n`);
         res.setEncoding('utf8');
@@ -24,8 +24,10 @@ const requestBook = () => {
             data += chunk;
         });
         res.on('end', () => {
-            console.log(`body: ${util.inspect(JSON.parse(data), {depth: null})}\n`);
+            data = JSON.parse(data);
+            console.log(`body: ${util.inspect(data, {depth: null})}\n`);
             // console.log('body: %j', JSON.parse(data));
+            cb(data);
         });
     })
 
@@ -77,14 +79,14 @@ const server = http.createServer((req, res) => {
                 });
                 req.on('end', () => {
                     body = querystring.parse(body);
-                    res.statusCode = 200;
-                    res.setHeader('Content-Type', 'text/plain');
-                    console.log(body);
-                    res.end(`adsfadfasfdfasd${body.bookname}`);
+                    console.log(`bookname is: ${body.bookname}`);
+                    requestBook(body.bookname, 1, (data) => {
+                        res.statusCode = 200;
+                        res.setHeader('Content-Type', 'application/json; charset=utf-8');
+                        res.end(JSON.stringify(data));
+                    });
+
                 });
-
-            } else {
-
             }
             break;
     }
