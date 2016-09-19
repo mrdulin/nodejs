@@ -5,7 +5,7 @@
             "name": "启动",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/demos/window.fetch polyfill/server/server-express.js",
+            "program": "${workspaceRoot}/demos/get-file-dir-names/index.js",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",
