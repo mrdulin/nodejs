@@ -1,0 +1,21 @@
+<html> +
+            <head> +
+                <title>TodoList</title> +
+            </head> +
+            <body> +
+                <h1>Todo List</h1> +
+                <ul> +
+                     itemTpl +
+                </ul> +
+                <form action='/' method='post'> +
+                    <div> +
+                        <label> +
+                            <input type='text' name='item'/> +
+                        </label> +
+                    </div> +
+                    <div> +
+                        <input type='submit' value='add item'> +
+                    </div> +
+                </form> +
+            </body> +
+        </html>;
