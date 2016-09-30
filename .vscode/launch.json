@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "${workspaceRoot}/demos/get-file-dir-names/index.js",
             "stopOnEntry": false,
-            "args": [],
+            "args": ["-p", "/Users/dulin/Downloads/archive", "-f", "av.json", "-e", "./SF-UI", "./old"],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": null,
             "runtimeExecutable": null,
