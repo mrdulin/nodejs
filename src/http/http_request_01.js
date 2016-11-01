@@ -9,7 +9,6 @@ const requestBook = (q, count = 1, cb) => {
         count
     })
     const options = {
-        protocol: 'http:',
         host: 'api.douban.com',
         method: 'GET',
         path: '/v2/book/search?'+ params
