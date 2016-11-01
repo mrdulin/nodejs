@@ -1,5 +1,5 @@
 {
-  "name": "node-core",
+  "name": "Training.nodejs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mrdulin/node-core.git"
+    "url": "git+https://github.com/mrdulin/Training.nodejs.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mrdulin/node-core/issues"
+    "url": "https://github.com/mrdulin/Training.nodejs/issues"
   },
-  "homepage": "https://github.com/mrdulin/node-core#readme",
+  "homepage": "https://github.com/mrdulin/Training.nodejs#readme",
   "dependencies": {
     "basic-auth": "^1.0.4",
     "body-parser": "^1.15.1",
