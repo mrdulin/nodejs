@@ -3,6 +3,7 @@ const http = require('http');
 const async = require('async');
 const querystring = require('querystring');
 const superagent = require('superagent');
+const util = require('util');
 
 console.log('爬虫程序开始运行...');
 
@@ -18,20 +19,25 @@ const postData = querystring.stringify({
 });
 
 const req = http.request({
-    hostname: 'wcatproject.com',
+    host: 'wcatproject.com',
     port: '80',
     path: '/charSearch/function/getData.php',
     method: 'POST',
     headers: {
         'Accept': 'application/json, text/javascript, */*; q=0.01',
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'Content-Length': Buffer.byteLength(postData)
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
     }
 }, (res) => {
     let body = '';
+    console.log(res,'-------')
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
-        console.log(`BODY: ${chunk}`);
+        console.log(chunk)
+        body += chunk;
+    });
+    res.on('end', () => {
+        data = JSON.parse(body);
+        console.log(`body: ${util.inspect(data, {depth: null})}\n`);
     });
     
 });
