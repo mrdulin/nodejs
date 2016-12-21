@@ -5,7 +5,7 @@
             "name": "启动",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/src/Crawler/index.js",
+            "program": "${workspaceRoot}/src/www.duotoo.com/index.js",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",
