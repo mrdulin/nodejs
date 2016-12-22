@@ -25,3 +25,5 @@ _其他说明：_
 * 调试使用`node-inspector`和`nodemon`，在一个终端窗口中`nodemon --debug app.js`，再打开一个窗口`node-inspector`
 
 * `querystring`模块无法正确`stringify`嵌套对象，使用第三方`qs`模块
+
+* `node --debug-brk=40107 --nolazy <path/filename>`调试
