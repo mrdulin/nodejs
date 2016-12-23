@@ -46,6 +46,7 @@ class DataFinder {
 	getAblumName(html) {
 		const $ = cheerio.load(html);
 		const title = $('.ArticleH1 > h1').text();
+		return title;
 	}
 }
 
@@ -94,11 +95,11 @@ ajax.get(argvUrl).then(res => {
     // console.log(pageSize);
 	const pageId = argvUrl.replace('.html', '');
     let pageUrls = [argvUrl]
-    for (let i = 2; i < pageSize; i++) {
+    for (let i = 2; i <= pageSize; i++) {
         pageUrls.push(`${pageId}_${i}.html`);
     }
 
-	const ablumName = dataFinder.getAblumName(argvUrl);
+	const ablumName = dataFinder.getAblumName(res.text);
 
     return new Promise((resolve, reject) => {
 
