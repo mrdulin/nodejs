@@ -8,7 +8,10 @@ const util = require('util');
 const fs = require('fs');
 const path = require('path');
 
-const argvUrl = process.argv[2];
+let argvUrl = process.argv[2];
+if(argvUrl.indexOf('.html') === -1) {
+	argvUrl = argvUrl + '.html';
+}
 
 console.log('爬虫程序开始运行...');
 
@@ -87,7 +90,6 @@ class Ajax {
 
 const ajax = new Ajax({host});
 const dataFinder = new DataFinder();
-console.log('开始下载' + argvUrl + '套图...');
 const dirName = path.basename(argvUrl + '', '.html');
 
 ajax.get(argvUrl).then(res => {
@@ -100,10 +102,11 @@ ajax.get(argvUrl).then(res => {
     }
 
 	const ablumName = dataFinder.getAblumName(res.text);
+	console.log('开始下载<<<' + ablumName + '>>>套图...');
 
     return new Promise((resolve, reject) => {
 
-        async.mapLimit(pageUrls, 3, (url, cb) => {
+        async.mapLimit(pageUrls, 10, (url, cb) => {
             ajax.get(url).then(res => {
                 const picUrl = dataFinder.getPicUrl(res.text);
                 cb(null, picUrl);
@@ -143,7 +146,7 @@ ajax.get(argvUrl).then(res => {
         if (err) {
             fs.mkdirSync(dirPath);
         }
-        async.eachOfLimit(picUrls, 1, savePic, (err) => {
+        async.eachOfLimit(picUrls, 10, savePic, (err) => {
             if (err) return console.error(err);
             console.log('程序执行完毕!')
         });
