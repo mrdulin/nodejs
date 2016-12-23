@@ -53,13 +53,13 @@ class Ajax {
         this.host = opts.host;
     }
 
-    get(path) {
+    get(rUrl) {
         return new Promise((resolve, reject) => {
             let url = '', contentType = '';
-            if (path.includes('http:')) {
-                url = path;
+            if (rUrl.indexOf('http:') !== -1) {
+                url = rUrl;
             } else {
-                url = `${this.host}/${path}`;
+                url = `${this.host}/${rUrl}`;
             }
 
             if (url.includes('jpg')) {
@@ -93,12 +93,11 @@ const dirName = path.basename(argvUrl + '', '.html');
 ajax.get(argvUrl).then(res => {
     const pageSize = dataFinder.getPageSize(res.text);
     // console.log(pageSize);
-    let pageUrls = [dirName]
+	const pageId = argvUrl.replace('.html', '');
+    let pageUrls = [argvUrl]
     for (let i = 2; i < pageSize; i++) {
-        pageUrls.push(`${dirName}_${i}`);
+        pageUrls.push(`${pageId}_${i}.html`);
     }
-
-    pageUrls = pageUrls.map(path => `${host}/${category}/${path}.html`);
 
     return new Promise((resolve, reject) => {
 
