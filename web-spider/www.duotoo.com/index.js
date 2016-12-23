@@ -13,8 +13,8 @@ const argvUrl = process.argv[2];
 console.log('爬虫程序开始运行...');
 
 const host = 'http://www.duotoo.com';
-const category = 'xingganmeinv';
-const page = 'xingganmeinv_2.html'
+// const category = 'xingganmeinv';
+// const page = 'xingganmeinv_2.html'
 
 charset(superagent);
 
@@ -43,9 +43,10 @@ class DataFinder {
         const picUrl = $img.attr('src') || $img.attr('original');
         return picUrl;
     }
-    clearLoadHtml() {
-        this.$ = null;
-    }
+	getAblumName(html) {
+		const $ = cheerio.load(html);
+		const title = $('.ArticleH1 > h1').text();
+	}
 }
 
 class Ajax {
@@ -83,9 +84,7 @@ class Ajax {
     }
 }
 
-const ajax = new Ajax({
-    host
-});
+const ajax = new Ajax({host});
 const dataFinder = new DataFinder();
 console.log('开始下载' + argvUrl + '套图...');
 const dirName = path.basename(argvUrl + '', '.html');
@@ -98,6 +97,8 @@ ajax.get(argvUrl).then(res => {
     for (let i = 2; i < pageSize; i++) {
         pageUrls.push(`${pageId}_${i}.html`);
     }
+
+	const ablumName = dataFinder.getAblumName(argvUrl);
 
     return new Promise((resolve, reject) => {
 
@@ -114,14 +115,14 @@ ajax.get(argvUrl).then(res => {
             } else {
                 resolve({
                     picUrls: results,
-                    picDirName: dirName
+                    ablumName
                 });
             }
         })
     })
     // const picUrl = dataFinder.getPicUrl(res.text);
-}).then(({picUrls, picDirName}) => {
-    const dirPath = path.resolve(process.cwd(), `${picDirName}`);
+}).then(({picUrls, ablumName}) => {
+    const dirPath = path.resolve(process.cwd(), `${ablumName}`);
     const writeData = (res, filename, url, cb) => {
         const writeStream = fs.createWriteStream(filename);
         res.pipe(writeStream);
