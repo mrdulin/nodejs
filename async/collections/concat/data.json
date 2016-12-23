@@ -1,91 +1,10 @@
 {
     "data": [
         {
-            "query": "angular",
-            "body": {
-                "Error": "0",
-                "Time": 0.0294,
-                "Total": "9",
-                "Page": 1,
-                "Books": [
-                    {
-                        "ID": 4122728448,
-                        "Title": "Getting MEAN with Mongo, Express, Angular, and Node",
-                        "Description": "Traditional web dev stacks use a different programming language in every layer, resulting in a complex mashup of code and frameworks. Together, the MongoDB database, the Express and AngularJS frameworks, and Node.js constitute the MEAN stacku2014a powe ...",
-                        "Image": "http://s.it-ebooks-api.info/5/getting_mean_with_mongo_express_angular_and_node.jpg",
-                        "isbn": "9781617292033"
-                    },
-                    {
-                        "ID": 3202804470,
-                        "Title": "Pro TypeScript",
-                        "SubTitle": "Application-Scale JavaScript Development",
-                        "Description": "JavaScript is everywhere, both as a pure language and in popular libraries like Angular, jQuery and Knockout, but users of modern object-oriented languages like Java and C# often find JavaScript frustrating to use and hard to extend to large-scale ap ...",
-                        "Image": "http://s.it-ebooks-api.info/6/pro_typescript.jpg",
-                        "isbn": "9781430267911"
-                    },
-                    {
-                        "ID": 3625738736,
-                        "Title": "AngularJS: Novice to Ninja",
-                        "SubTitle": "Elegant, Powerful, Testable, Extendable",
-                        "Description": "AngularJS: Novice to Ninja is the perfect book to journey into the world of AngularJS, the superheroic JavaScript framework. Developed and maintained by Google, AngularJS brings the Model-View-Controller (MVC) pattern to JavaScript applications and p ...",
-                        "Image": "http://s.it-ebooks-api.info/7/angularjs_novice_to_ninja.jpg",
-                        "isbn": "9780992279455"
-                    },
-                    {
-                        "ID": 1957971290,
-                        "Title": "AngularJS by Example",
-                        "SubTitle": "Learn AngularJS, and tackle the challenges of modern web development by creating your own applications with these practical examples you can use and adapt",
-                        "Description": "AngularJS makes web JavaScript web development less painful and more organized u2013 it's unsurprising that today it's one of the most popular tools in web development.nnAngularJS by Example helps you get started with this essential web development f ...",
-                        "Image": "http://s.it-ebooks-api.info/14/angularjs_by_example.jpg",
-                        "isbn": "9781783553815"
-                    },
-                    {
-                        "ID": 2152247293,
-                        "Title": "AngularJS Directives Cookbook",
-                        "SubTitle": "Extend the capabilities of AngularJS and build dynamic web applications by creating customized directives with this selection of more than 30 recipes",
-                        "Description": "AngularJS directives are at the center of what makes it such an exciting u2013 and important - web development framework. With directives, you can take greater control over HTML elements on your web pages u2013 they u2018direct' Angular's HTML compiler to ...",
-                        "Image": "http://s.it-ebooks-api.info/14/angularjs_directives_cookbook.jpg",
-                        "isbn": "9781784395896"
-                    },
-                    {
-                        "ID": 3960039562,
-                        "Title": "Mastering MeteorJS Application Development",
-                        "SubTitle": "MeteorJS makes full-stack JavaScript Application Development simple u2013 Learn how to build better modern web apps with MeteorJS, and become an expert in the innovative JavaScript framework",
-                        "Description": "The web is dead u2013 applications now rule our online experiences. But how are you going to build them? Well, if you've been paying attention, you might already have tried your hand with MeteorJS, the JavaScript framework that helps you build complete ...",
-                        "Image": "http://s.it-ebooks-api.info/14/mastering_meteorjs_application_development.jpg",
-                        "isbn": "9781785282379"
-                    },
-                    {
-                        "ID": 217336290,
-                        "Title": "Rails, Angular, Postgres, and Bootstrap",
-                        "SubTitle": "Powerful, Effective, and Efficient Full-Stack Web Development",
-                        "Description": "As a Rails developer, you care about user experience and performance, but you also want simple and maintainable code. Achieve all that by embracing the full stack of web development, from styling with Bootstrap, building an interactive user interface ...",
-                        "Image": "http://s.it-ebooks-api.info/1/rails_angular_postgres_and_bootstrap.jpg",
-                        "isbn": "9781680501261"
-                    },
-                    {
-                        "ID": 4238085813,
-                        "Title": "AngularJS in Action",
-                        "Description": "AngularJS is a JavaScript-based framework that extends HTML, so you can create dynamic, interactive web applications in the same way you create standard static pages. Out of the box, Angular provides most of the functionality you'll need for basic ap ...",
-                        "Image": "http://s.it-ebooks-api.info/5/angularjs_in_action.jpg",
-                        "isbn": "9781617291333"
-                    },
-                    {
-                        "ID": 1916744333,
-                        "Title": "Material Design implementation with AngularJS",
-                        "SubTitle": "UI Component Framework",
-                        "Description": "Building web and mobile apps that are interactive, fluid and provide consistent experience across devices ranging from desktops, tablets and smart phones is challenging. User Interface (UI) elements need to adapt to various screen sizes and yet the c ...",
-                        "Image": "http://s.it-ebooks-api.info/6/material_design_implementation_with_angularjs.jpg",
-                        "isbn": "9781484221891"
-                    }
-                ]
-            }
-        },
-        {
             "query": "jquery",
             "body": {
                 "Error": "0",
-                "Time": 0.0338,
+                "Time": 0.0528,
                 "Total": "103",
                 "Page": 1,
                 "Books": [
@@ -173,100 +92,10 @@
             }
         },
         {
-            "query": "backbone",
-            "body": {
-                "Error": "0",
-                "Time": 0.0275,
-                "Total": "23",
-                "Page": 1,
-                "Books": [
-                    {
-                        "ID": 3748417925,
-                        "Title": "Backbone.js Testing",
-                        "SubTitle": "Plan, architect, and develop tests for Backbone.js applications using modern testing principles and practices",
-                        "Description": "Frontend web applications are soaring in popularity and the Backbone.js library is leading this charge with a modular, lightweight approach for organizing JavaScript web applications. At the same time, testing client-side JavaScript and Backbone.js p ...",
-                        "Image": "http://s.it-ebooks-api.info/14/backbone.js_testing.jpg",
-                        "isbn": "9781782165248"
-                    },
-                    {
-                        "ID": 846207196,
-                        "Title": "Backbone.js Blueprints",
-                        "SubTitle": "Understand Backbone.js pragmatically by building seven different applications from scratch",
-                        "Description": "Backbone.js is an open source, JavaScript library that helps you to build sophisticated and structured web apps. It's important to have well-organized frontend code for easy maintenance and extendability. With the Backbone framework, you'll be able t ...",
-                        "Image": "http://s.it-ebooks-api.info/14/backbone.js_blueprints.jpg",
-                        "isbn": "9781783286997"
-                    },
-                    {
-                        "ID": 3205429280,
-                        "Title": "Backbone.js Essentials",
-                        "SubTitle": "Build amazing high-performance web applications using Backbone.js",
-                        "Description": "This book offers insight into creating and maintaining dynamic Backbone.js web applications. It delves into the the fundamentals of Backbone.js and helps you achieve mastery of the Backbone library.nnStarting with Models and Collections, you'll lea ...",
-                        "Image": "http://s.it-ebooks-api.info/14/backbone.js_essentials.jpg",
-                        "isbn": "9781784394790"
-                    },
-                    {
-                        "ID": 148888839,
-                        "Title": "Mastering Backbone.js",
-                        "SubTitle": "Design and build scalable web applications using Backbone.js",
-                        "Description": "Backbone.js is a popular library to build single page applications used by many start-ups around the world because of its flexibility, robustness and simplicity. It allows you to bring your own tools and libraries to make amazing webapps with your ow ...",
-                        "Image": "http://s.it-ebooks-api.info/14/mastering_backbone.js.jpg",
-                        "isbn": "9781783288496"
-                    },
-                    {
-                        "ID": 2994755406,
-                        "Title": "Developing Backbone.js Applications, Early Release",
-                        "SubTitle": "Building Better JavaScript Applications",
-                        "Description": "Get a complete run-down of the popular Backbone.js framework for structuring JavaScript applications. This practical guide takes you through Model-view-controller (MVC) theory, and shows you how to build applications using Backbone's models, views, c ...",
-                        "Image": "http://s.it-ebooks-api.info/3/developing_backbone.js_applications_er.jpg",
-                        "isbn": "9781449328252"
-                    },
-                    {
-                        "ID": 3238945693,
-                        "Title": "Building Node Applications with MongoDB and Backbone",
-                        "SubTitle": "Rapid Prototyping and Scalable Deployment",
-                        "Description": "Build an application from backend to browser with Node.js, and kick open the doors to real-time event programming. With this hands-on book, you'll learn how to create a social network application similar to LinkedIn and Facebook, but with a real-time ...",
-                        "Image": "http://s.it-ebooks-api.info/3/building_node_applications_with_mongodb_and_backbone.jpg",
-                        "isbn": "9781449337391"
-                    },
-                    {
-                        "ID": 285216600,
-                        "Title": "Developing Backbone.js Applications",
-                        "SubTitle": "Building Better JavaScript Applications",
-                        "Description": "If you want to build your site's frontend with the single-page application (SPA) model, this hands-on book shows you how to get the job done with Backbone.js. You'll learn how to create structured JavaScript applications, using Backbone's own flavor ...",
-                        "Image": "http://s.it-ebooks-api.info/3/developing_backbone.js_applications.jpg",
-                        "isbn": "9781449328252"
-                    },
-                    {
-                        "ID": 515927009,
-                        "Title": "Beginning Backbone.js",
-                        "Description": "Beginning Backbone.js is your step-by-step guide to learning and using the Backbone.js library in your web projects. Backbone.js is one of the most popular JavaScript libraries among web developers, used to create modular, single-page web apps. This ...",
-                        "Image": "http://s.it-ebooks-api.info/6/beginning_backbone.js.jpg",
-                        "isbn": "9781430263340"
-                    },
-                    {
-                        "ID": 4166068935,
-                        "Title": "Full Stack Web Development with Backbone.js",
-                        "SubTitle": "Scalable Application Design with 100% JavaScript",
-                        "Description": "Learn how to build a full-stack application with Backbone.js by taking advantage of JavaScript modules, workflow automation, and Backbone's interface building blocks. With this practical guide, author Patrick Mulder takes experienced backend develope ...",
-                        "Image": "http://s.it-ebooks-api.info/3/full_stack_web_development_with_backbone.js.jpg",
-                        "isbn": "9781449370985"
-                    },
-                    {
-                        "ID": 3288861369,
-                        "Title": "Lightweight Django",
-                        "SubTitle": "Using REST, WebSockets, and Backbone",
-                        "Description": "How can you take advantage of the Django framework to integrate complex client-side interactions and real-time features into your web applications? Through a series of rapid application development projects, this hands-on book shows experienced Djang ...",
-                        "Image": "http://s.it-ebooks-api.info/3/lightweight_django.jpg",
-                        "isbn": "9781491945940"
-                    }
-                ]
-            }
-        },
-        {
             "query": "react",
             "body": {
                 "Error": "0",
-                "Time": 0.0288,
+                "Time": 0.0708,
                 "Total": "24",
                 "Page": 1,
                 "Books": [
@@ -353,10 +182,181 @@
             }
         },
         {
+            "query": "angular",
+            "body": {
+                "Error": "0",
+                "Time": 0.0662,
+                "Total": "9",
+                "Page": 1,
+                "Books": [
+                    {
+                        "ID": 4122728448,
+                        "Title": "Getting MEAN with Mongo, Express, Angular, and Node",
+                        "Description": "Traditional web dev stacks use a different programming language in every layer, resulting in a complex mashup of code and frameworks. Together, the MongoDB database, the Express and AngularJS frameworks, and Node.js constitute the MEAN stacku2014a powe ...",
+                        "Image": "http://s.it-ebooks-api.info/5/getting_mean_with_mongo_express_angular_and_node.jpg",
+                        "isbn": "9781617292033"
+                    },
+                    {
+                        "ID": 3202804470,
+                        "Title": "Pro TypeScript",
+                        "SubTitle": "Application-Scale JavaScript Development",
+                        "Description": "JavaScript is everywhere, both as a pure language and in popular libraries like Angular, jQuery and Knockout, but users of modern object-oriented languages like Java and C# often find JavaScript frustrating to use and hard to extend to large-scale ap ...",
+                        "Image": "http://s.it-ebooks-api.info/6/pro_typescript.jpg",
+                        "isbn": "9781430267911"
+                    },
+                    {
+                        "ID": 3625738736,
+                        "Title": "AngularJS: Novice to Ninja",
+                        "SubTitle": "Elegant, Powerful, Testable, Extendable",
+                        "Description": "AngularJS: Novice to Ninja is the perfect book to journey into the world of AngularJS, the superheroic JavaScript framework. Developed and maintained by Google, AngularJS brings the Model-View-Controller (MVC) pattern to JavaScript applications and p ...",
+                        "Image": "http://s.it-ebooks-api.info/7/angularjs_novice_to_ninja.jpg",
+                        "isbn": "9780992279455"
+                    },
+                    {
+                        "ID": 1957971290,
+                        "Title": "AngularJS by Example",
+                        "SubTitle": "Learn AngularJS, and tackle the challenges of modern web development by creating your own applications with these practical examples you can use and adapt",
+                        "Description": "AngularJS makes web JavaScript web development less painful and more organized u2013 it's unsurprising that today it's one of the most popular tools in web development.nnAngularJS by Example helps you get started with this essential web development f ...",
+                        "Image": "http://s.it-ebooks-api.info/14/angularjs_by_example.jpg",
+                        "isbn": "9781783553815"
+                    },
+                    {
+                        "ID": 2152247293,
+                        "Title": "AngularJS Directives Cookbook",
+                        "SubTitle": "Extend the capabilities of AngularJS and build dynamic web applications by creating customized directives with this selection of more than 30 recipes",
+                        "Description": "AngularJS directives are at the center of what makes it such an exciting u2013 and important - web development framework. With directives, you can take greater control over HTML elements on your web pages u2013 they u2018direct' Angular's HTML compiler to ...",
+                        "Image": "http://s.it-ebooks-api.info/14/angularjs_directives_cookbook.jpg",
+                        "isbn": "9781784395896"
+                    },
+                    {
+                        "ID": 3960039562,
+                        "Title": "Mastering MeteorJS Application Development",
+                        "SubTitle": "MeteorJS makes full-stack JavaScript Application Development simple u2013 Learn how to build better modern web apps with MeteorJS, and become an expert in the innovative JavaScript framework",
+                        "Description": "The web is dead u2013 applications now rule our online experiences. But how are you going to build them? Well, if you've been paying attention, you might already have tried your hand with MeteorJS, the JavaScript framework that helps you build complete ...",
+                        "Image": "http://s.it-ebooks-api.info/14/mastering_meteorjs_application_development.jpg",
+                        "isbn": "9781785282379"
+                    },
+                    {
+                        "ID": 217336290,
+                        "Title": "Rails, Angular, Postgres, and Bootstrap",
+                        "SubTitle": "Powerful, Effective, and Efficient Full-Stack Web Development",
+                        "Description": "As a Rails developer, you care about user experience and performance, but you also want simple and maintainable code. Achieve all that by embracing the full stack of web development, from styling with Bootstrap, building an interactive user interface ...",
+                        "Image": "http://s.it-ebooks-api.info/1/rails_angular_postgres_and_bootstrap.jpg",
+                        "isbn": "9781680501261"
+                    },
+                    {
+                        "ID": 4238085813,
+                        "Title": "AngularJS in Action",
+                        "Description": "AngularJS is a JavaScript-based framework that extends HTML, so you can create dynamic, interactive web applications in the same way you create standard static pages. Out of the box, Angular provides most of the functionality you'll need for basic ap ...",
+                        "Image": "http://s.it-ebooks-api.info/5/angularjs_in_action.jpg",
+                        "isbn": "9781617291333"
+                    },
+                    {
+                        "ID": 1916744333,
+                        "Title": "Material Design implementation with AngularJS",
+                        "SubTitle": "UI Component Framework",
+                        "Description": "Building web and mobile apps that are interactive, fluid and provide consistent experience across devices ranging from desktops, tablets and smart phones is challenging. User Interface (UI) elements need to adapt to various screen sizes and yet the c ...",
+                        "Image": "http://s.it-ebooks-api.info/6/material_design_implementation_with_angularjs.jpg",
+                        "isbn": "9781484221891"
+                    }
+                ]
+            }
+        },
+        {
+            "query": "backbone",
+            "body": {
+                "Error": "0",
+                "Time": 0.0646,
+                "Total": "23",
+                "Page": 1,
+                "Books": [
+                    {
+                        "ID": 3748417925,
+                        "Title": "Backbone.js Testing",
+                        "SubTitle": "Plan, architect, and develop tests for Backbone.js applications using modern testing principles and practices",
+                        "Description": "Frontend web applications are soaring in popularity and the Backbone.js library is leading this charge with a modular, lightweight approach for organizing JavaScript web applications. At the same time, testing client-side JavaScript and Backbone.js p ...",
+                        "Image": "http://s.it-ebooks-api.info/14/backbone.js_testing.jpg",
+                        "isbn": "9781782165248"
+                    },
+                    {
+                        "ID": 846207196,
+                        "Title": "Backbone.js Blueprints",
+                        "SubTitle": "Understand Backbone.js pragmatically by building seven different applications from scratch",
+                        "Description": "Backbone.js is an open source, JavaScript library that helps you to build sophisticated and structured web apps. It's important to have well-organized frontend code for easy maintenance and extendability. With the Backbone framework, you'll be able t ...",
+                        "Image": "http://s.it-ebooks-api.info/14/backbone.js_blueprints.jpg",
+                        "isbn": "9781783286997"
+                    },
+                    {
+                        "ID": 3205429280,
+                        "Title": "Backbone.js Essentials",
+                        "SubTitle": "Build amazing high-performance web applications using Backbone.js",
+                        "Description": "This book offers insight into creating and maintaining dynamic Backbone.js web applications. It delves into the the fundamentals of Backbone.js and helps you achieve mastery of the Backbone library.nnStarting with Models and Collections, you'll lea ...",
+                        "Image": "http://s.it-ebooks-api.info/14/backbone.js_essentials.jpg",
+                        "isbn": "9781784394790"
+                    },
+                    {
+                        "ID": 148888839,
+                        "Title": "Mastering Backbone.js",
+                        "SubTitle": "Design and build scalable web applications using Backbone.js",
+                        "Description": "Backbone.js is a popular library to build single page applications used by many start-ups around the world because of its flexibility, robustness and simplicity. It allows you to bring your own tools and libraries to make amazing webapps with your ow ...",
+                        "Image": "http://s.it-ebooks-api.info/14/mastering_backbone.js.jpg",
+                        "isbn": "9781783288496"
+                    },
+                    {
+                        "ID": 2994755406,
+                        "Title": "Developing Backbone.js Applications, Early Release",
+                        "SubTitle": "Building Better JavaScript Applications",
+                        "Description": "Get a complete run-down of the popular Backbone.js framework for structuring JavaScript applications. This practical guide takes you through Model-view-controller (MVC) theory, and shows you how to build applications using Backbone's models, views, c ...",
+                        "Image": "http://s.it-ebooks-api.info/3/developing_backbone.js_applications_er.jpg",
+                        "isbn": "9781449328252"
+                    },
+                    {
+                        "ID": 3238945693,
+                        "Title": "Building Node Applications with MongoDB and Backbone",
+                        "SubTitle": "Rapid Prototyping and Scalable Deployment",
+                        "Description": "Build an application from backend to browser with Node.js, and kick open the doors to real-time event programming. With this hands-on book, you'll learn how to create a social network application similar to LinkedIn and Facebook, but with a real-time ...",
+                        "Image": "http://s.it-ebooks-api.info/3/building_node_applications_with_mongodb_and_backbone.jpg",
+                        "isbn": "9781449337391"
+                    },
+                    {
+                        "ID": 285216600,
+                        "Title": "Developing Backbone.js Applications",
+                        "SubTitle": "Building Better JavaScript Applications",
+                        "Description": "If you want to build your site's frontend with the single-page application (SPA) model, this hands-on book shows you how to get the job done with Backbone.js. You'll learn how to create structured JavaScript applications, using Backbone's own flavor ...",
+                        "Image": "http://s.it-ebooks-api.info/3/developing_backbone.js_applications.jpg",
+                        "isbn": "9781449328252"
+                    },
+                    {
+                        "ID": 515927009,
+                        "Title": "Beginning Backbone.js",
+                        "Description": "Beginning Backbone.js is your step-by-step guide to learning and using the Backbone.js library in your web projects. Backbone.js is one of the most popular JavaScript libraries among web developers, used to create modular, single-page web apps. This ...",
+                        "Image": "http://s.it-ebooks-api.info/6/beginning_backbone.js.jpg",
+                        "isbn": "9781430263340"
+                    },
+                    {
+                        "ID": 4166068935,
+                        "Title": "Full Stack Web Development with Backbone.js",
+                        "SubTitle": "Scalable Application Design with 100% JavaScript",
+                        "Description": "Learn how to build a full-stack application with Backbone.js by taking advantage of JavaScript modules, workflow automation, and Backbone's interface building blocks. With this practical guide, author Patrick Mulder takes experienced backend develope ...",
+                        "Image": "http://s.it-ebooks-api.info/3/full_stack_web_development_with_backbone.js.jpg",
+                        "isbn": "9781449370985"
+                    },
+                    {
+                        "ID": 3288861369,
+                        "Title": "Lightweight Django",
+                        "SubTitle": "Using REST, WebSockets, and Backbone",
+                        "Description": "How can you take advantage of the Django framework to integrate complex client-side interactions and real-time features into your web applications? Through a series of rapid application development projects, this hands-on book shows experienced Djang ...",
+                        "Image": "http://s.it-ebooks-api.info/3/lightweight_django.jpg",
+                        "isbn": "9781491945940"
+                    }
+                ]
+            }
+        },
+        {
             "query": "node",
             "body": {
                 "Error": "0",
-                "Time": 0.0203,
+                "Time": 0.0662,
                 "Total": "86",
                 "Page": 1,
                 "Books": [
