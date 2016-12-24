@@ -1,0 +1,31 @@
+{
+  "name": "grabfilename",
+  "version": "1.0.0",
+  "description": "Grab filenames in specify directory.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrdulin/grabfilename.git"
+  },
+  "keywords": [
+    "filename",
+    "grab",
+    "directory"
+  ],
+  "author": "mrdulin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrdulin/grabfilename/issues"
+  },
+  "homepage": "https://github.com/mrdulin/grabfilename#readme",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "yargs": "^5.0.0"
+  },
+  "bin": {
+    "grabfilenames": "./index.js"
+  }
+}

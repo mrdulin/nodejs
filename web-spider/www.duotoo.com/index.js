@@ -16,6 +16,7 @@ if(argvUrl.indexOf('.html') === -1) {
 console.log('爬虫程序开始运行...');
 
 const host = 'http://www.duotoo.com';
+let startTime, endTime;
 // const category = 'xingganmeinv';
 // const page = 'xingganmeinv_2.html'
 
@@ -93,16 +94,19 @@ const dataFinder = new DataFinder();
 const dirName = path.basename(argvUrl + '', '.html');
 
 ajax.get(argvUrl).then(res => {
+	startTime = new Date().getTime();
     const pageSize = dataFinder.getPageSize(res.text);
     // console.log(pageSize);
 	const pageId = argvUrl.replace('.html', '');
     let pageUrls = [argvUrl]
+
     for (let i = 2; i <= pageSize; i++) {
         pageUrls.push(`${pageId}_${i}.html`);
     }
 
 	const ablumName = dataFinder.getAblumName(res.text);
-	console.log('开始下载<<<' + ablumName + '>>>套图...');
+	const ablumId = path.basename(argvUrl, '.html');
+	console.log(`开始下载<<<${ablumId}___${ablumName}>>>套图...`);
 
     return new Promise((resolve, reject) => {
 
@@ -110,23 +114,17 @@ ajax.get(argvUrl).then(res => {
             ajax.get(url).then(res => {
                 const picUrl = dataFinder.getPicUrl(res.text);
                 cb(null, picUrl);
-                // const filename = path.basename(url);
-                // writeData(res, path.resolve(process.cwd(), filename), url, cb)
             })
-        }, (err, results) => {
+        }, (err, picUrls) => {
             if (err) {
                 reject(err);
             } else {
-                resolve({
-                    picUrls: results,
-                    ablumName
-                });
+                resolve({picUrls, ablumName, ablumId});
             }
         })
     })
-    // const picUrl = dataFinder.getPicUrl(res.text);
-}).then(({picUrls, ablumName}) => {
-    const dirPath = path.resolve(process.cwd(), `${ablumName}`);
+}).then(({picUrls, ablumName, ablumId}) => {
+    const dirPath = path.resolve(process.cwd(), `${ablumId}___${ablumName}}`);
     const writeData = (res, filename, url, cb) => {
         const writeStream = fs.createWriteStream(filename);
         res.pipe(writeStream);
@@ -148,7 +146,9 @@ ajax.get(argvUrl).then(res => {
         }
         async.eachOfLimit(picUrls, 10, savePic, (err) => {
             if (err) return console.error(err);
-            console.log('程序执行完毕!')
+			endTime = Date.now();
+			const totalTime = new Date(startTime - endTime);
+            console.log('程序执行完毕!总耗时: %s秒', totalTime.getSeconds());
         });
     })
 
