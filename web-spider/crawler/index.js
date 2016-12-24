@@ -7,47 +7,47 @@ const util = require('util');
 
 console.log('爬虫程序开始运行...');
 
-const postData = querystring.stringify({
-        info: 'isempty', 
-		star : [0,0,0,1,0], 
-		job : [0,0,0,0,0,0,0,0], 
-		type : [0,0,0,0,0,0,0], 
-		phase : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-		cate : [0,0,0,0,0,0,0,0,0,0], 
-		phases : ['初代', '第一期','第二期','第三期','第四期','第五期','第六期', '第七期','第八期','第九期','第十期','第十一期','第十二期','第十三期','第十四期', '第十五期', '第十六期'],
-		cates : ['活動限定','限定角色','聖誕限定','正月限定','黑貓限定','中川限定','茶熊限定','夏日限定']
-});
+// const postData = querystring.stringify({
+//         info: 'isempty',
+// 		star : [0,0,0,1,0],
+// 		job : [0,0,0,0,0,0,0,0],
+// 		type : [0,0,0,0,0,0,0],
+// 		phase : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+// 		cate : [0,0,0,0,0,0,0,0,0,0],
+// 		phases : ['初代', '第一期','第二期','第三期','第四期','第五期','第六期', '第七期','第八期','第九期','第十期','第十一期','第十二期','第十三期','第十四期', '第十五期', '第十六期'],
+// 		cates : ['活動限定','限定角色','聖誕限定','正月限定','黑貓限定','中川限定','茶熊限定','夏日限定']
+// });
 
-const req = http.request({
-    host: 'wcatproject.com',
-    port: '80',
-    path: '/charSearch/function/getData.php',
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json, text/javascript, */*; q=0.01',
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-    }
-}, (res) => {
-    let body = '';
-    console.log(res,'-------')
-    res.setEncoding('utf8');
-    res.on('data', (chunk) => {
-        console.log(chunk)
-        body += chunk;
-    });
-    res.on('end', () => {
-        data = JSON.parse(body);
-        console.log(`body: ${util.inspect(data, {depth: null})}\n`);
-    });
-    
-});
+// const req = http.request({
+//     host: 'wcatproject.com',
+//     port: '80',
+//     path: '/charSearch/function/getData.php',
+//     method: 'POST',
+//     headers: {
+//         'Accept': 'application/json, text/javascript, */*; q=0.01',
+//         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+//     }
+// }, (res) => {
+//     let body = '';
+//     // console.log(res,'-------')
+//     res.setEncoding('utf8');
+//     res.on('data', (chunk) => {
+//         // console.log(chunk)
+//         body += chunk;
+//     });
+//     res.on('end', () => {
+//         data = JSON.parse(body);
+//         console.log(`body: ${util.inspect(data, {depth: null})}\n`);
+//     });
 
-req.on('error', (e) => {
-    console.log(`problem with request: ${e.message}`);
-});
+// });
 
-req.write(postData);
-req.end();
+// req.on('error', (e) => {
+//     console.log(`problem with request: ${e.message}`);
+// });
+
+// req.write(postData);
+// req.end();
 
 const fetchInfo = (heroId, cb) => {
    superagent
@@ -59,27 +59,27 @@ const fetchInfo = (heroId, cb) => {
         })
 }
 
-// superagent
-//     .post('http://wcatproject.com/charSearch/function/getData.php')
-//     .send({
-//         info: 'isempty', 
-// 		star : [0,0,0,1,0], 
-// 		job : [0,0,0,0,0,0,0,0], 
-// 		type : [0,0,0,0,0,0,0], 
-// 		phase : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-// 		cate : [0,0,0,0,0,0,0,0,0,0], 
-// 		phases : ['初代', '第一期','第二期','第三期','第四期','第五期','第六期', '第七期','第八期','第九期','第十期','第十一期','第十二期','第十三期','第十四期', '第十五期', '第十六期'],
-// 		cates : ['活動限定','限定角色','聖誕限定','正月限定','黑貓限定','中川限定','茶熊限定','夏日限定']
-//     })
-//     .set('Accept', 'application/json, text/javascript, */*; q=0.01')
-//     .set('Content-Type','application/x-www-form-urlencoded; charset=UTF-8')
-//     .end((err, res) => {
-//         const heroes = JSON.parse(res.text);
-//         async.mapLimit(heroes, 1, (hero, cb) => {
-//             const heroId = hero[0];
-//             fetchInfo(heroId, cb);
-//         }, (err, results) => {
-//             console.log('抓取角色数量：' + results.length);
-//         });
+superagent
+    .post('http://wcatproject.com/charSearch/function/getData.php')
+    .send({
+        info: 'isempty',
+		star : [0,0,0,1,0],
+		job : [0,0,0,0,0,0,0,0],
+		type : [0,0,0,0,0,0,0],
+		phase : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		cate : [0,0,0,0,0,0,0,0,0,0],
+		phases : ['初代', '第一期','第二期','第三期','第四期','第五期','第六期', '第七期','第八期','第九期','第十期','第十一期','第十二期','第十三期','第十四期', '第十五期', '第十六期'],
+		cates : ['活動限定','限定角色','聖誕限定','正月限定','黑貓限定','中川限定','茶熊限定','夏日限定']
+    })
+    .set('Accept', 'application/json, text/javascript, */*; q=0.01')
+    .set('Content-Type','application/x-www-form-urlencoded; charset=UTF-8')
+    .end((err, res) => {
+        const heroes = JSON.parse(res.text);
+        async.mapLimit(heroes, 1, (hero, cb) => {
+            const heroId = hero[0];
+            fetchInfo(heroId, cb);
+        }, (err, results) => {
+            console.log('抓取角色数量：' + results.length);
+        });
 
-//     })
+    })

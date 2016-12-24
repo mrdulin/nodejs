@@ -1,20 +1,9 @@
-# node demo
+# node examples
 
 _环境:_
 
-｀node`版本
-
-```bash
-dulindeiMac:node-core dulin$ node -v
-v6.2.0
-```
-
-`npm`版本
-
-```bash
-dulindeiMac:node-core dulin$ npm -v
-3.8.9
-```
+`node`: `v7.2.1`
+`npm`: `3.10.10`
 
 _其他说明：_
 
