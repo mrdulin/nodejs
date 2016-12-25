@@ -5,9 +5,9 @@
             "name": "启动",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/web-spider/www.duotoo.com/index.js",
+            "program": "${workspaceRoot}/async/utils/timeout/index.js",
             "stopOnEntry": false,
-            "args": ["http://www.duotoo.com/xingganmeinv/33545.html"],
+            "args": [],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": null,
             "runtimeExecutable": null,
@@ -22,7 +22,7 @@
             "outDir": null
         },
         {
-            "name": "附加",
+            "name": "retry",
             "type": "node",
             "request": "attach",
             "port": 5858,

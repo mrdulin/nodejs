@@ -7,20 +7,19 @@ const charset = require('superagent-charset');
 const util = require('util');
 const fs = require('fs');
 const path = require('path');
+const url = require('url');
+charset(superagent);
 
+console.log('爬虫程序开始运行...');
+
+//输入的网址是这样的：http://www.duotoo.com/xingganmeinv/33333.html 或者 http://www.duotoo.com/xingganmeinv/33333
 let argvUrl = process.argv[2];
 if(argvUrl.indexOf('.html') === -1) {
 	argvUrl = argvUrl + '.html';
 }
 
-console.log('爬虫程序开始运行...');
-
 const host = 'http://www.duotoo.com';
-let startTime, endTime;
-// const category = 'xingganmeinv';
-// const page = 'xingganmeinv_2.html'
-
-charset(superagent);
+let startTime, endTime, ajax, dataFinder;
 
 class DataFinder {
     getCategoryItemLinks(html) {
@@ -35,7 +34,6 @@ class DataFinder {
     }
     getPageSize(html) {
         const $ = cheerio.load(html);
-        this.$ = $;
         const pageSize = this.pageSize = Number.parseInt($('#pageinfo').attr('pageinfo'), 10);
         return pageSize;
     }
@@ -47,10 +45,12 @@ class DataFinder {
         const picUrl = $img.attr('src') || $img.attr('original');
         return picUrl;
     }
-	getAblumName(html) {
+	getAblumInfos(html) {
 		const $ = cheerio.load(html);
 		const title = $('.ArticleH1 > h1').text();
-		return title;
+		const updateDateTxt = $('.ArticleH1 > p').contents().filter((idx, el) => el.nodeType === 3).last().text();
+		const updateDate = updateDateTxt.split('|')[2].trim().split(' ')[1];
+		return {title, updateDate};
 	}
 }
 
@@ -89,11 +89,15 @@ class Ajax {
     }
 }
 
-const ajax = new Ajax({host});
-const dataFinder = new DataFinder();
-const dirName = path.basename(argvUrl + '', '.html');
+/**
+ * @desc 获取相册id;
+ * @returns {String} xingganmeinv/33333
+ */
+const getAlbumKey = (fullUrl) => {
+	return url.parse(fullUrl).pathname.split('.')[0];
+};
 
-ajax.get(argvUrl).then(res => {
+const fetchAllPicUrlsFromAlbum = res => {
 	startTime = new Date().getTime();
     const pageSize = dataFinder.getPageSize(res.text);
     // console.log(pageSize);
@@ -104,9 +108,9 @@ ajax.get(argvUrl).then(res => {
         pageUrls.push(`${pageId}_${i}.html`);
     }
 
-	const ablumName = dataFinder.getAblumName(res.text);
+	const {title: ablumName, updateDate} = dataFinder.getAblumInfos(res.text);
 	const ablumId = path.basename(argvUrl, '.html');
-	console.log(`开始下载<<<${ablumId}___${ablumName}>>>套图...`);
+	console.log(`开始下载<<<${updateDate}__${ablumId}__${ablumName}>>>套图...`);
 
     return new Promise((resolve, reject) => {
 
@@ -119,12 +123,14 @@ ajax.get(argvUrl).then(res => {
             if (err) {
                 reject(err);
             } else {
-                resolve({picUrls, ablumName, ablumId});
+                resolve({picUrls, ablumName, ablumId, updateDate});
             }
         })
     })
-}).then(({picUrls, ablumName, ablumId}) => {
-    const dirPath = path.resolve(process.cwd(), `${ablumId}___${ablumName}}`);
+};
+
+const fetchAllPic = ({picUrls, ablumName, ablumId, updateDate}) => {
+    const dirPath = path.resolve(process.cwd(), `${updateDate}__${ablumId}__${ablumName}}`);
     const writeData = (res, filename, url, cb) => {
         const writeStream = fs.createWriteStream(filename);
         res.pipe(writeStream);
@@ -151,7 +157,16 @@ ajax.get(argvUrl).then(res => {
             console.log('程序执行完毕!总耗时: %s秒', totalTime.getSeconds());
         });
     })
+};
 
-}).catch(err => {
+const handleErr = err => {
 	console.error(err);
-})
+}
+const main = () => {
+	ajax = new Ajax({host});
+	dataFinder = new DataFinder();
+	ajax.get(argvUrl).then(fetchAllPicUrlsFromAlbum).then(fetchAllPic).catch(handleErr)
+}
+
+main();
+

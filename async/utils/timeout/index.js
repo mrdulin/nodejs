@@ -15,11 +15,33 @@ const searchBook = (query, cb) => {
 	});
 }
 
-const searchBookWrapped = timeout(searchBook, 1000);
+const searchBookWrapped = timeout(searchBook, 1500);
+const query = 'angular';
+const retryDelay = 2000, maxRetryCount = 5;
+searchBookWrapped.retryCount = 1;
 
-searchBookWrapped('angular', (err, data) => {
-	if(err) return console.error(err.stack);
-	const result = {data};
-	fs.writeFileSync(path.resolve(__dirname, 'data.json'), JSON.stringify(result, null, 4));
-})
+const searchHandle = (err, data) => {
+	if(err) {
+		if(err.code === 'ETIMEDOUT') {
+			const {retryCount} = searchBookWrapped;
+			if(retryCount < maxRetryCount) {
+				console.log(`请求超时，正在重新尝试请求. ${retryCount}次`)
+				// setTimeout(() => {
+					searchBookWrapped.retryCount++;
+					searchBookWrapped.call(null, query, searchHandle);
+				// }, retryDelay);
+			} else {
+				return console.error(err.stack);
+			}
+		} else {
+			return console.error(err.stack);
+		}
+	} else {
+		const result = {data};
+		fs.writeFileSync(path.resolve(__dirname, 'data.json'), JSON.stringify(result, null, 4));
+		console.log('请求成功，数据写入完毕!');
+	}
+}
+
+searchBookWrapped(query, searchHandle);
 
