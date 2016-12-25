@@ -10,11 +10,12 @@ fs.open(p, 'a', function opened(err, fd) {
         bufferLength = buffer.length,
         filePosition = 0;
     fs.write(fd, buffer, bufferOffset, bufferLength, filePosition,
-        function wrote(err, written, buf) {
+        function wrote(err, bytes, buf) {
             if (err) throw err;
-            console.log('wrote ' + written + 'bytes');
-            if (Buffer.isBuffer(buf)) {
-                console.log(buffer.toString('utf8'));
-            }
+            console.log('wrote ' + bytes + 'bytes');
+            console.log(buffer.toString('utf8'));
+
+            fs.fsyncSync(fd);
+            fs.closeSync(fd);
         });
 });

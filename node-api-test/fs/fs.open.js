@@ -24,7 +24,7 @@ fs.open(p, 'r', function opened(err, fd) {
         if (err) throw err;
         console.log('Just read ' + bytesRead + 'bytes');
         if (bytesRead > 0) {
-            console.log(readBuffer.slice(0, bytesRead).toString('utf8', 0, bytesRead));
+            console.log(buffer.slice(0, bytesRead).toString('utf8', 0, bytesRead));
         }
     });
 });
