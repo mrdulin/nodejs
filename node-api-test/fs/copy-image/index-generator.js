@@ -5,9 +5,9 @@ const read = () => {
         fs.readFile('./cup.jpg', 'base64', (err, data) => {
             if(err) reject(err);
             resolve(data);
-        });
+        })
     })
-};
+}
 
 const write = (data) => {
     return new Promise((resolve, reject) => {
@@ -18,10 +18,13 @@ const write = (data) => {
     })
 }
 
-async function main (){
-    const data = await read();
-    return await write(data);
+const main = function* () {
+    const data = yield read();
+    return yield write(data);
 }
 
+const mainGen = main();
 
-main().then(console.log).catch(e => console.log(e.stack));
+mainGen.next().value.then(data => {
+    return mainGen.next(data).value.then(console.log);
+}).catch(e => console.log(e.stack));

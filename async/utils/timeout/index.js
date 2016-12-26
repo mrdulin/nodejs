@@ -15,9 +15,9 @@ const searchBook = (query, cb) => {
 	});
 }
 
-const searchBookWrapped = timeout(searchBook, 1500);
+const searchBookWrapped = timeout(searchBook, 800);
 const query = 'angular';
-const retryDelay = 2000, maxRetryCount = 5;
+const retryDelay = 1000, maxRetryCount = 5;
 searchBookWrapped.retryCount = 1;
 
 const searchHandle = (err, data) => {
@@ -26,10 +26,11 @@ const searchHandle = (err, data) => {
 			const {retryCount} = searchBookWrapped;
 			if(retryCount < maxRetryCount) {
 				console.log(`请求超时，正在重新尝试请求. ${retryCount}次`)
-				// setTimeout(() => {
+				setTimeout(() => {
 					searchBookWrapped.retryCount++;
 					searchBookWrapped.call(null, query, searchHandle);
-				// }, retryDelay);
+					return;
+				}, retryDelay);
 			} else {
 				return console.error(err.stack);
 			}
