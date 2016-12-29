@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "启动",
+            "name": "web-spider",
             "type": "node",
             "request": "launch",
             "program": "${workspaceRoot}/web-spider/www.duotoo.com/index.js",
@@ -22,9 +22,29 @@
             "outDir": null
         },
         {
+            "name": "questions",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/questions/async-await-for-loop/index.js",
+            "stopOnEntry": false,
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": null,
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/babel-node",
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "externalConsole": false,
+            "sourceMaps": false,
+            "outDir": null
+        },
+        {
             "name": "retry",
             "type": "node",
-            "request": "attach",
+            "request": "launch",
             "port": 5858,
             "address": "localhost",
             "restart": false,

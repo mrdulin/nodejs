@@ -20,11 +20,7 @@ let argvUrl = process.argv[2];
 const urlObject = url.parse(argvUrl);
 
 if(!urlObject.hostname) {
-    let slash = '';
-    if(urlObject.pathname.split('/')[0] !== '/') {
-        slash = '/';
-    }
-    queryUrl = host + slash + urlObject.pathname;
+    queryUrl = path.normalize(host + '/' + urlObject.pathname);
 }
 
 if(queryUrl.indexOf('.html') === -1) {
