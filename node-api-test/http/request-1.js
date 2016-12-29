@@ -3,15 +3,16 @@ const util = require('util');
 const querystring = require('querystring');
 
 const port = 8080;
-const requestBook = (q, count = 1, cb) => {
-    const params = querystring.stringify({
-        q,
-        count
-    })
+const requestBook = (q, number = 1, cb) => {
+    // const params = querystring.stringify({
+    //     q,
+    //     number
+    // })
     const options = {
-        host: 'api.douban.com',
+        protocol: 'http:',
+        hostname: 'it-ebooks-api.info',
         method: 'GET',
-        path: '/v2/book/search?'+ params
+        path: '/v1/search/'+ q + '/page/' + number
     };
 
     const req = http.request(options, (res) => {
