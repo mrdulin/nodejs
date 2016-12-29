@@ -37,6 +37,7 @@
     "yargs": "^5.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-polyfill": "^6.20.0"
   }
 }

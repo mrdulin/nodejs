@@ -13,13 +13,25 @@ charset(superagent);
 console.log('爬虫程序开始运行...');
 
 //输入的网址是这样的：http://www.duotoo.com/xingganmeinv/33333.html 或者 http://www.duotoo.com/xingganmeinv/33333
-let argvUrl = process.argv[2];
-if(argvUrl.indexOf('.html') === -1) {
-	argvUrl = argvUrl + '.html';
-}
 
 const host = 'http://www.duotoo.com';
-let startTime, endTime, ajax, dataFinder;
+let startTime, endTime, ajax, dataFinder, queryUrl;
+let argvUrl = process.argv[2];
+const urlObject = url.parse(argvUrl);
+
+if(!urlObject.hostname) {
+    let slash = '';
+    if(urlObject.pathname.split('/')[0] !== '/') {
+        slash = '/';
+    }
+    queryUrl = host + slash + urlObject.pathname;
+}
+
+if(queryUrl.indexOf('.html') === -1) {
+	queryUrl = queryUrl + '.html';
+}
+
+console.log(queryUrl);
 
 class DataFinder {
     getCategoryItemLinks(html) {
@@ -61,20 +73,20 @@ class Ajax {
 
     get(rUrl) {
         return new Promise((resolve, reject) => {
-            let url = '', contentType = '';
+            let urlstring = '', contentType = '';
             if (rUrl.indexOf('http:') !== -1) {
-                url = rUrl;
+                urlstring = rUrl;
             } else {
-                url = `${this.host}/${rUrl}`;
+                urlstring = `${this.host}/${rUrl}`;
             }
 
-            if (url.includes('jpg')) {
+            if (urlstring.includes('jpg')) {
                 contentType = 'image/jpg';
             } else {
                 contentType = 'text/html; charset=UTF-8';
             }
             superagent
-                .get(url)
+                .get(urlstring)
                 .charset('gbk')
                 .set('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8')
                 .set('Content-Type', contentType)
@@ -101,15 +113,15 @@ const fetchAllPicUrlsFromAlbum = res => {
 	startTime = new Date().getTime();
     const pageSize = dataFinder.getPageSize(res.text);
     // console.log(pageSize);
-	const pageId = argvUrl.replace('.html', '');
-    let pageUrls = [argvUrl]
+	const pageId = queryUrl.replace('.html', '');
+    let pageUrls = [queryUrl]
 
     for (let i = 2; i <= pageSize; i++) {
         pageUrls.push(`${pageId}_${i}.html`);
     }
 
 	const {title: ablumName, updateDate} = dataFinder.getAblumInfos(res.text);
-	const ablumId = path.basename(argvUrl, '.html');
+	const ablumId = path.basename(queryUrl, '.html');
 	console.log(`开始下载<<<${updateDate}__${ablumId}__${ablumName}>>>套图...`);
 
     return new Promise((resolve, reject) => {
@@ -165,7 +177,7 @@ const handleErr = err => {
 const main = () => {
 	ajax = new Ajax({host});
 	dataFinder = new DataFinder();
-	ajax.get(argvUrl).then(fetchAllPicUrlsFromAlbum).then(fetchAllPic).catch(handleErr)
+	ajax.get(queryUrl).then(fetchAllPicUrlsFromAlbum).then(fetchAllPic).catch(handleErr)
 }
 
 main();
