@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(express.static(clientPath))
-app.use('/lib', express.static(node_modules));    
+app.use('/lib', express.static(node_modules));
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
