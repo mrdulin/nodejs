@@ -8,6 +8,7 @@ app.get('/', function (req, res) {
 
 app.get('/login', function (req, res) {
   var credentials = auth(req)
+  console.log(credentials);
 
   if (!credentials || credentials.name !== 'novaline' || credentials.pass !== '123123') {
     res.statusCode = 401
