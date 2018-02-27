@@ -1,22 +1,10 @@
 {
-  "name": "Training.nodejs",
+  "name": "training.nodejs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "grunt": "grunt"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mrdulin/Training.nodejs.git"
-  },
   "keywords": [],
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mrdulin/Training.nodejs/issues"
-  },
-  "homepage": "https://github.com/mrdulin/Training.nodejs#readme",
   "dependencies": {
     "async": "^2.1.2",
     "basic-auth": "^1.0.4",
@@ -30,6 +18,7 @@
     "formidable": "^1.0.17",
     "jasmine": "^2.8.0",
     "mongoose": "^4.11.8",
+    "morgan": "^1.9.0",
     "mysql": "^2.11.0",
     "socket.io": "^2.0.3",
     "superagent": "^3.6.0",
