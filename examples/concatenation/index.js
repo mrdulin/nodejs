@@ -5,9 +5,9 @@ process.chdir('examples/concatenation/recipes');
 let str = '';
 const dirs = fs.readdirSync('.');
 
-async.filter(dirs, isFile, function (err, filenames) {
+async.filter(dirs, isFile, function(err, filenames) {
   async.eachOfSeries(filenames, readAndConcat, onComplete);
-})
+});
 
 function isFile(filename, callback) {
   fs.stat(filename, (err, stats) => {
@@ -36,5 +36,3 @@ function onComplete(err) {
   if (err) throw err;
   console.log(str);
 }
-
-
