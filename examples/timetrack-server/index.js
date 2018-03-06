@@ -42,16 +42,17 @@ const server = http.createServer((req, res) => {
 
 connection.query(
   'CREATE TABLE IF NOT EXISTS work (' +
-  'id INT(10) NOT NULL AUTO_INCREMENT,' +
-  'hours DECIMAL(5, 2) DEFAULT 0,' +
-  'date DATE,' +
-  'archived INT(1) DEFAULT 0,' +
-  'description LONGTEXT,' +
-  'PRIMARY KEY(id)' +
-  ')',
-  (err) => {
+    'id INT(10) NOT NULL AUTO_INCREMENT,' +
+    'hours DECIMAL(5, 2) DEFAULT 0,' +
+    'date DATE,' +
+    'archived INT(1) DEFAULT 0,' +
+    'description LONGTEXT,' +
+    'PRIMARY KEY(id)' +
+    ')',
+  err => {
     if (err) throw err;
     server.listen(port, host, () => {
       process.stdout.write(`Server is listening on ${host}:${port}`);
     });
-  });
+  }
+);

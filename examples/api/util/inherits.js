@@ -1,23 +1,25 @@
 var util = require('util');
 
+// 原型对象继承
+
 function Base() {
-    this.name = 'base';
-    this.year = 2016;
-    this.sayHello = function() {
-        console.log('Hello ' + this.name + ', ' + 'this is ' + this.year);
-    }
+  this.name = 'base';
+  this.year = 2016;
+  this.sayHello = function() {
+    console.log('Hello ' + this.name + ', ' + 'this is ' + this.year);
+  };
 }
 
 Base.prototype.showName = function() {
-    console.log(this.name);
-}
+  console.log(this.name);
+};
 
 Base.prototype.showYear = function() {
-    console.log(this.year);
-}
+  console.log(this.year);
+};
 
 function Child() {
-    this.name = 'child';
+  this.name = 'child';
 }
 
 //语法：util.inherits(constructor, superConstructor)
