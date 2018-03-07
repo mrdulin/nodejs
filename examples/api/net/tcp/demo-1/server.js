@@ -2,6 +2,7 @@ const net = require('net');
 
 const chatServe = net.createServer();
 const clientList = [];
+const port = 9000;
 
 function broadcast(message, client, clientName) {
   const cleanup = [];
@@ -42,5 +43,6 @@ chatServe.on('connection', client => {
   });
 });
 
-chatServe.listen(9000);
-console.log('chat serve start');
+chatServe.listen(port, () => {
+  console.log(`TCP server is listen on localhost:${port}`);
+});
