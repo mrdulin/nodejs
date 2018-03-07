@@ -4,6 +4,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/examples/api/process/stdin.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "server-client-structure",
       "program": "${workspaceRoot}/mini-programs/server-client-structure/server/index.js"
     },
@@ -13,15 +19,11 @@
       "request": "launch",
       "program": "${workspaceRoot}/web-spider/www.duotoo.com/index.js",
       "stopOnEntry": false,
-      "args": [
-        "waiguomeinv/33601"
-      ],
+      "args": ["waiguomeinv/33601"],
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
       "runtimeExecutable": null,
-      "runtimeArgs": [
-        "--nolazy"
-      ],
+      "runtimeArgs": ["--nolazy"],
       "env": {
         "NODE_ENV": "development"
       },
@@ -37,9 +39,7 @@
       "cwd": "${workspaceRoot}",
       "preLaunchTask": null,
       "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/babel-node",
-      "runtimeArgs": [
-        "--nolazy"
-      ],
+      "runtimeArgs": ["--nolazy"],
       "env": {
         "NODE_ENV": "development"
       },
