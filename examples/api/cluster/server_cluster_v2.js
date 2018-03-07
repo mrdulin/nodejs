@@ -1,13 +1,13 @@
 const cluster = require('cluster');
+const cpus = require('os').cpus();
 
 cluster.setupMaster({
   exec: 'server.js'
 });
 
-const cpus = require('os').cpus();
-for (var i = 0; i < cpus.length; i++) {
+for (let i = 0; i < cpus.length; i += 1) {
   const worker = cluster.fork();
-  console.log('Create worker. pid: ' + worker.process.pid);
+  console.log(`Create worker. pid: ${worker.process.pid}`);
 }
 
 cluster.on('disconnect', worker => {

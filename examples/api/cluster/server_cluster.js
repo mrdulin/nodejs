@@ -1,4 +1,6 @@
 const cluster = require('cluster');
+const os = require('os');
+const startServer = require('./server');
 
 function startWorker() {
   const worker = cluster.fork();
@@ -6,11 +8,9 @@ function startWorker() {
 }
 
 if (cluster.isMaster) {
-  require('os')
-    .cpus()
-    .forEach(() => {
-      startWorker();
-    });
+  os.cpus().forEach(() => {
+    startWorker();
+  });
 
   cluster.on('disconnect', worker => {
     console.log('CLUSTER: Worker %d disconnected from the cluster.', worker.id);
@@ -22,5 +22,5 @@ if (cluster.isMaster) {
   });
 } else {
   console.log('start server');
-  require('./server')();
+  startServer();
 }
