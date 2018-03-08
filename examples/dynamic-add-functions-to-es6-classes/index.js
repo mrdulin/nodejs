@@ -16,12 +16,10 @@ class Test {
 const coin = () => Math.random() < 0.5;
 
 if (coin()) {
-  Test.prototype.sayHello = function () {
+  Test.prototype.sayHello = function sayHello() {
     console.log('hello');
-  }
+  };
 }
 
 const m = new Test();
 m.sayHello();
-
-
