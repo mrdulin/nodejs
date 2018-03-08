@@ -1,4 +1,5 @@
 const fs = require('fs');
+
 process.chdir('examples/concatenation/recipes');
 
 let str = '';
@@ -9,16 +10,20 @@ fs.readdir('.', (err, filenames) => {
   function readFileAt(i) {
     const filename = filenames[i];
 
-    fs.stat(filename, (err, stats) => {
-      if (err) throw err;
-      if (!stats.isFile()) return readFileAt(i + 1);
+    fs.stat(filename, (statErr, stats) => {
+      if (statErr) throw statErr;
+      if (!stats.isFile()) {
+        readFileAt(i + 1);
+        return;
+      }
 
-      fs.readFile(filename, 'utf8', (err, data) => {
-        if (err) throw err;
+      fs.readFile(filename, 'utf8', (readErr, data) => {
+        if (readErr) throw readErr;
         str += data;
 
         if (i + 1 === filenames.length) {
-          return console.log(str);
+          console.log(str);
+          return;
         }
 
         readFileAt(i + 1);

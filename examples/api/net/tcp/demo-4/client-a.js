@@ -7,15 +7,12 @@ const port = 9696;
 
 const socketClient = net.connect(port, host, () => {
   console.log('client connected');
-  socketClient.write('client write: Hello Server!');
+  socketClient.write('client A write: Hello Server!');
 });
 
 // 接受服务端发来的数据
 socketClient.on('data', data => {
   console.log(data.toString());
-
-  // 输出由服务算发来的数据字节长度
-  console.log(`socket.bytesRead is ${socketClient.bytesRead}`);
 
   // 关闭客户端
   // 如果是socketClient.end(data), 等同于先调用socketClient.write(data)方法，再调用socketClient.end()

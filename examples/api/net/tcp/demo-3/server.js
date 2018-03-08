@@ -30,6 +30,7 @@ server.on('connection', socket => {
     console.log(`Data from ${socket.remoteAddress}:${socket.remotePort} is: ${data}`);
   });
 
+  // 客户端断开链接会触发
   socket.on('close', () => {
     console.log(`CLOSED: ${socket.remoteAddress}:${socket.remotePort}`);
   });
@@ -42,9 +43,11 @@ server.on('connection', socket => {
       console.info('current connections: ', count);
     }
   });
-  server.close();
+
+  // server.close();
 });
 
+// 调用server.close()会触发，TCP服务器关闭
 server.on('close', () => {
   console.log('Server is now closed');
 });
