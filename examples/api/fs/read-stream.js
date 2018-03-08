@@ -1,13 +1,11 @@
-'use strict';
+const fs = require('fs');
 
-const
-    fs = require('fs'),
-    stream = fs.createReadStream(process.argv[2]);
+const stream = fs.createReadStream(process.argv[2]);
 
-stream.on('data', function (chunk) {
-    process.stdout.write(chunk);
+stream.on('data', chunk => {
+  process.stdout.write(chunk);
 });
 
-stream.on('error', function (err) {
-    process.stderr.write(err);
+stream.on('error', err => {
+  process.stderr.write(err);
 });
