@@ -34,35 +34,32 @@ function requestListener(req, res) {
   var contentType = getContentType(extname);
 
   if (contentType) {
-    getFile(url).then(file => {
-      res.writeHead(200, { 'Content-Type': contentType });
-      res.end(file, 'utf-8');
-    }).catch(e => {
-      console.log(e.error.stack);
-      res.writeHead(e.code);
-      res.end();
-    });
+    getFile(url)
+      .then(file => {
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(file, 'utf-8');
+      })
+      .catch(e => {
+        console.log(e.error.stack);
+        res.writeHead(e.code);
+        res.end();
+      });
   } else {
     apiRouter(req, res);
   }
 }
 
 function apiRouter(req, res) {
-  const {url} = req;
+  const { url } = req;
   let data;
   if (url === '/books') {
-    data = [
-      { name: 'angular', id: 1 },
-      { name: 'jquery', id: 2 },
-      { name: 'backbone', id: 3 }
-    ];
+    data = [{ name: 'angular', id: 1 }, { name: 'jquery', id: 2 }, { name: 'backbone', id: 3 }];
   } else if (url === '/user') {
     data = { name: 'novaline', age: 23 };
   }
   res.writeHead(200, { 'Content-Type': 'application/json' });
   res.end(JSON.stringify(data));
 }
-
 
 function getContentType(extname) {
   let contentType = '';

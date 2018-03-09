@@ -1,32 +1,34 @@
 window.onload = init;
 
 function init() {
-
   var getUserEl = document.getElementById('getUser'),
     nameEl = document.getElementById('name'),
     ageEl = document.getElementById('age'),
     getHomeEl = document.getElementById('getHome'),
     bookListEl = document.getElementById('bookList');
 
-  getHomeEl.onclick = function (e) {
+  getHomeEl.onclick = function(e) {
     requestHome();
-  }
-  getUserEl.onclick = function (e) {
+  };
+  getUserEl.onclick = function(e) {
     requestUser();
-  }
+  };
 
   function requestUser() {
-    ajax('GET', '/user', function (data) {
-      var user = data;
-      nameEl.textContent = user.name;
-      ageEl.textContent = user.age;
-    }, function () {
-
-    });
+    ajax(
+      'GET',
+      '/user',
+      function(data) {
+        var user = data;
+        nameEl.textContent = user.name;
+        ageEl.textContent = user.age;
+      },
+      function() {}
+    );
   }
 
   function requestHome() {
-    ajax('GET', '/books', function (data) {
+    ajax('GET', '/books', function(data) {
       var books = data;
       var i = 0,
         len = data.length,
@@ -67,9 +69,7 @@ function init() {
      * 注意: 该方法适用于 IE10+ 及其他现代浏览器.
      */
     function _onprogress(e) {
-      groupLog('xhr onprogress event', [
-        ['progress:', e.loaded/e.total]
-      ]);
+      groupLog('xhr onprogress event', [['progress:', e.loaded / e.total]]);
     }
 
     /**
@@ -77,11 +77,8 @@ function init() {
      * onloadstart方法中默认将传入一个ProgressEvent事件进度对象.
      */
     function _onloadstart(event) {
-      groupLog('xhr onloadstart event', [
-        ['event', event]
-      ]);
+      groupLog('xhr onloadstart event', [['event', event]]);
     }
-
 
     /**
      * onreadystatechange事件回调方法在readystate状态改变时触发,
@@ -98,7 +95,7 @@ function init() {
       ]);
       if (xhr.readyState === 4) {
         var status = xhr.status;
-        if(status === 200) {
+        if (status === 200) {
           successCallback.call(this, JSON.parse(xhr.response));
         }
       }
@@ -106,11 +103,8 @@ function init() {
 
     function _onload() {
       var status = this.status;
-      if((status >= 200 && status < 300) || status === 304) {
-        groupLog('xhr onload event', [
-          ['xhr.response', xhr.response],
-          ['xhr.responseText', xhr.responseText]
-        ]);
+      if ((status >= 200 && status < 300) || status === 304) {
+        groupLog('xhr onload event', [['xhr.response', xhr.response], ['xhr.responseText', xhr.responseText]]);
       }
     }
 
@@ -121,9 +115,7 @@ function init() {
      * @param {any} e
      */
     function _onloadend(e) {
-      groupLog('xhr onloadend event', [
-        ['xhr.readyState', this.readyState]
-      ]);
+      groupLog('xhr onloadend event', [['xhr.readyState', this.readyState]]);
     }
 
     xhr.send();
