@@ -1,13 +1,16 @@
 const express = require('express');
+const path = require('path');
 
 const app = express();
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  const filepath = path.resolve(__dirname, 'index.html');
+  res.sendFile(filepath);
 });
 
 app.get('/js', (req, res) => {
-  res.sendFile(__dirname + '/js.html');
+  const filepath = path.resolve(__dirname, 'js.html');
+  res.sendFile(filepath);
 });
 
 app.listen(3001);
