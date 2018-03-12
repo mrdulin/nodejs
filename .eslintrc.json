@@ -5,6 +5,7 @@
     "no-restricted-syntax": "off",
     "arrow-parens": "off",
     "comma-dangle": ["error", "never"],
-    "max-len": "off"
+    "max-len": "off",
+    "arrow-body-style": "off"
   }
 }
