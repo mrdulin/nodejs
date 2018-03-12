@@ -6,6 +6,7 @@
   "keywords": [],
   "license": "ISC",
   "dependencies": {
+    "amqplib": "^0.5.2",
     "async": "^2.1.2",
     "basic-auth": "^1.0.4",
     "body-parser": "^1.15.1",

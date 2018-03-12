@@ -1,24 +1,21 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const parse = require('url').parse;
+const url = require('url');
 
-const static = path.join(__dirname, '../../', '/public');
-console.log('static', static);
+const staticPath = path.join(__dirname, 'public');
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-  const url = parse(req.url);
+  const reqUrl = url.parse(req.url);
   const writeStream = fs.createWriteStream('request.txt');
   req.pipe(writeStream);
-  console.log('url', url);
 
-  const filepath = path.join(static, url.pathname);
-  console.log('filepath is ', filepath);
+  const filepath = path.join(staticPath, reqUrl.pathname);
 
   // const readable = fs.createReadStream(filepath);
-  //向客户端发送文件
-  //方法1
+  // 向客户端发送文件
+  // 方法1
   // readable.on('data', (chunk) => {
   //     res.write(chunk);
   // });
@@ -39,15 +36,14 @@ const server = http.createServer((req, res) => {
   //     }
   // });
 
-  //方法2
+  // 方法2
   // readable.pipe(res);
   // readable.on('error', (err) => {
   //     res.statusCode = 500;
   //     res.end('Internal Server Error');
   // });
 
-
-  //完整的带错误处理的写法
+  // 完整的带错误处理的写法
   fs.stat(filepath, (err, stat) => {
     if (err) {
       if (err.code === 'ENOENT') {
@@ -61,10 +57,10 @@ const server = http.createServer((req, res) => {
       res.setHeader('Content-Length', stat.size);
       const readable = fs.createReadStream(filepath);
       readable.pipe(res);
-      readable.on('error', (err) => {
+      readable.on('error', () => {
         res.statusCode = 500;
         res.end('Internal Server Error');
-      })
+      });
     }
   });
 });
