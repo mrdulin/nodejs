@@ -44,19 +44,18 @@ app
   .use('/upload', (req, res) => {
     const form = new formidable.IncomingForm();
 
-    form.parse(req, function (err, fields, files) {
+    form.parse(req, function(err, fields, files) {
       res.writeHead(200, { 'content-type': 'text/plain' });
       res.write('received upload:\n\n');
       res.end(util.inspect({ fields: fields, files: files }));
     });
-
   })
   .use(urlencodedParser)
   .use(jsonParser)
   .use((req, res) => {
     res.setHeader('Content-Type', 'text/plain');
     res.statusCode = 200;
-    process.stdout.write(`req.body:  ${util.inspect(req.body)}\n`)
+    process.stdout.write(`req.body:  ${util.inspect(req.body)}\n`);
     let text = `'user is: ' ${req.body.username}\n`;
     res.end(text);
   })
