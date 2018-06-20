@@ -95,11 +95,9 @@ concat(urlMap, fetchData, (err, results) => {
   const ws = fs.createWriteStream(path.resolve(__dirname, 'data.json'));
   ws.write(JSON.stringify(data, null, 4), 'utf8');
   ws.end();
-  ws
-    .on('finish', () => {
-      console.log('数据写入完毕!');
-    })
-    .on('error', err => {
-      console.error(err.stack);
-    });
+  ws.on('finish', () => {
+    console.log('数据写入完毕!');
+  }).on('error', err => {
+    console.error(err.stack);
+  });
 });

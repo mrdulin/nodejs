@@ -7,15 +7,11 @@ const mw_hello = (req, res, next) => {
   } else {
     next();
   }
-}
+};
 
 const db = {
-  users: [
-    { name: 'tobi' },
-    { name: 'loki' },
-    { name: 'jane' }
-  ]
-}
+  users: [{ name: 'tobi' }, { name: 'loki' }, { name: 'jane' }]
+};
 
 const mw_users = (req, res, next) => {
   const match = req.url.match(/^\/user\/(.+)/);
@@ -32,8 +28,7 @@ const mw_users = (req, res, next) => {
   } else {
     next();
   }
-}
-
+};
 
 const mw_pets = (req, res, next) => {
   if (req.url.match(/^\/pet\/(.+)/)) {
@@ -41,7 +36,7 @@ const mw_pets = (req, res, next) => {
   } else {
     next();
   }
-}
+};
 
 const mw_errorHandler = (err, req, res, next) => {
   console.error(err.stack);
@@ -53,11 +48,9 @@ const mw_errorHandler = (err, req, res, next) => {
     res.statusCode = 500;
     res.end(JSON.stringify({ err: 'Internal Server Error' }));
   }
-}
+};
 
-const mw_errorPage = () => {
-
-}
+const mw_errorPage = () => {};
 
 const api = connect()
   .use(mw_users)

@@ -1,125 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <script src="lib/whatwg-fetch/fetch.js"></script>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="lib/whatwg-fetch/fetch.js"></script>
 </head>
+
 <body>
-    <!---->
-    <div id='city-content'></div>
-    <button type="button" id='get-city-btn'>获取城市</button>
-    <!---->
+  <!---->
+  <div id='city-content'></div>
+  <button type="button" id='get-city-btn'>获取城市</button>
+  <!---->
 
+  <div>
+    <img id='blob-img' src="" alt="">
+  </div>
+  <button id="get-img" type='button'>获取图片二进制文件</button>
+
+  <form id='form'>
     <div>
-        <img id='blob-img' src="" alt="">
+      <label for="username">username</label>
+      <input type="text" placeholder="用户名" name='user[name]'>
     </div>
-    <button id="get-img" type='button'>获取图片二进制文件</button>
+    <div>
+      <label for="password">password</label>
+      <input type="password" placeholder="密码" name='user[password]'>
+    </div>
+    <div>
+      <input type="submit" value='登陆' />
+    </div>
+  </form>
+  <script>
+    document.addEventListener('DOMContentLoaded', domReady);
 
-    <form id='form'>
-        <div>
-            <label for="username">username</label>
-            <input type="text" placeholder="用户名" name='user[name]'>
-        </div>
-        <div>
-            <label for="password">password</label>
-            <input type="password" placeholder="密码" name='user[password]'>
-        </div>
-        <div>
-            <input type="submit" value='登陆'/>
-        </div>
-    </form>
-    <script>
-        document.addEventListener('DOMContentLoaded', domReady);
+    function domReady() {
+      var host = 'http://localhost:8080';
+      var oGetCityBtn = document.querySelector('#get-city-btn');
+      oGetCityBtn.onclick = function getCity(e) {
+        var url = host + '/getCity';
+        fetch(url).then(function (response) {
+          console.log(response.headers.get('Content-Type'))
+          console.log(response.headers.get('Date'))
+          console.log(response.status)
+          console.log(response.statusText)
+          return response.json()
+        }).then(function (json) {
+          console.log('parsed json', json)
+          appendCityList(json);
+        }).catch(function (ex) {
+          console.log('parsing failed', ex)
+        });
+      }
 
-        function domReady() {
-            var host = 'http://localhost:8080';
-            var oGetCityBtn = document.querySelector('#get-city-btn');
-            oGetCityBtn.onclick = function getCity(e) {
-                var url = host + '/getCity';
-                fetch(url).then(function(response) {
-                    console.log(response.headers.get('Content-Type'))
-                    console.log(response.headers.get('Date'))
-                    console.log(response.status)
-                    console.log(response.statusText)
-                    return response.json()
-                }).then(function(json) {
-                    console.log('parsed json', json)
-                    appendCityList(json);
-                }).catch(function(ex) {
-                    console.log('parsing failed', ex)
-                });
-            }
-
-            function appendCityList(city) {
-                var ul = document.createElement('ul');
-                // var fragment = document.createDocumentFragment();
-                var cityKeys = Object.keys(city);
-                var len = cityKeys.length;
-                for(var i = len - 1; i >= 0; i--) {
-                    var li = document.createElement('li');
-                    var textNode = document.createTextNode(city[cityKeys[i]]);
-                    li.appendChild(textNode);
-                    ul.appendChild(li);
-                }
-
-                document.getElementById('city-content').appendChild(ul);
-
-            }
-
-            var oForm = document.getElementById('form');
-            oForm.onsubmit = function login(e) {
-                e.preventDefault();
-                const url = host + '/login';
-                var username = this.elements['user[name]'].value;
-                var password = this.elements['user[password]'].value;
-                var data = {
-                    username: username,
-                    password: password
-                };
-
-                // postJSON(url, data);
-                postFormData(url, new FormData(this));
-            }
-
-            function postJSON(url, data) {
-                return fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                }).then(function(res) {
-                    return res.json();
-                }).then(function(json) {
-                    console.log('parsed json', json);
-                });
-            }
-
-            function postFormData(url, formData) {
-                return fetch(url, {
-                    method: 'POST',
-                    body: formData
-                }).then(function(res) {
-                    return res.json();
-                }).then(function(json) {
-                    console.log('parsed json', json);
-                });
-            }
-
-            var oGetImg = document.getElementById('get-img');
-
-            oGetImg.onclick = function getImg(e) {
-                const url = host + '/getImg';
-                fetch(url).then(function(res) {
-                    return res.blob();
-                }).then(function(imageBlob) {
-                    document.getElementById('blob-img').src = URL.createObjectURL(imageBlob);
-                });
-            }
-
+      function appendCityList(city) {
+        var ul = document.createElement('ul');
+        // var fragment = document.createDocumentFragment();
+        var cityKeys = Object.keys(city);
+        var len = cityKeys.length;
+        for (var i = len - 1; i >= 0; i--) {
+          var li = document.createElement('li');
+          var textNode = document.createTextNode(city[cityKeys[i]]);
+          li.appendChild(textNode);
+          ul.appendChild(li);
         }
-    </script>
+
+        document.getElementById('city-content').appendChild(ul);
+
+      }
+
+      var oForm = document.getElementById('form');
+      oForm.onsubmit = function login(e) {
+        e.preventDefault();
+        const url = host + '/login';
+        var username = this.elements['user[name]'].value;
+        var password = this.elements['user[password]'].value;
+        var data = {
+          username: username,
+          password: password
+        };
+
+        // postJSON(url, data);
+        postFormData(url, new FormData(this));
+      }
+
+      function postJSON(url, data) {
+        return fetch(url, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        }).then(function (res) {
+          return res.json();
+        }).then(function (json) {
+          console.log('parsed json', json);
+        });
+      }
+
+      function postFormData(url, formData) {
+        return fetch(url, {
+          method: 'POST',
+          body: formData
+        }).then(function (res) {
+          return res.json();
+        }).then(function (json) {
+          console.log('parsed json', json);
+        });
+      }
+
+      var oGetImg = document.getElementById('get-img');
+
+      oGetImg.onclick = function getImg(e) {
+        const url = host + '/getImg';
+        fetch(url).then(function (res) {
+          return res.blob();
+        }).then(function (imageBlob) {
+          document.getElementById('blob-img').src = URL.createObjectURL(imageBlob);
+        });
+      }
+
+    }
+  </script>
 </body>
+
 </html>

@@ -4,23 +4,22 @@ const app = connect();
 const logger = (req, res, next) => {
   console.log('%s %s', req.method, req.url);
   next();
-}
+};
 
 const hello = (req, res, next) => {
   res.setHeader('Content-Type', 'text/plain');
   res.end('Hello world');
-}
+};
 
 const restrict = (req, res, next) => {
   console.log('restrict');
   next(new Error('restrict fail'));
-}
+};
 
 const admin = (req, res, next) => {
   console.log('admin');
   next();
 };
-
 
 const errorHandler = () => {
   const env = process.env.NODE_ENV || 'development';
@@ -37,8 +36,8 @@ const errorHandler = () => {
       default:
         res.end('Server error');
     }
-  }
-}
+  };
+};
 
 app
   .use(logger)
@@ -46,6 +45,5 @@ app
   .use('/admin', admin)
   .use(hello)
   .use(errorHandler());
-
 
 app.listen(3000);
