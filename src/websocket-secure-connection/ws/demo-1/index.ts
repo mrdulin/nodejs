@@ -4,12 +4,12 @@ import http from 'http';
 import fs from 'fs';
 import path from 'path';
 
-import { logger } from '../../utils';
+import { logger } from '../../../utils';
 
 const server: https.Server = https.createServer(
   {
-    cert: fs.readFileSync(path.resolve(__dirname, '../../../ssl/cert.pem')),
-    key: fs.readFileSync(path.resolve(__dirname, '../../../ssl/key.pem'))
+    cert: fs.readFileSync(path.resolve(__dirname, '../../../../ssl/cert.pem')),
+    key: fs.readFileSync(path.resolve(__dirname, '../../../../ssl/key.pem'))
   },
   (req: http.IncomingMessage, res: http.ServerResponse) => {
     res.end('normal');

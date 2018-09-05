@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Websocket Secure Connection</title>
+</head>
+
+<body>
+  <div>
+    <button id='btn'>Send Message</button>
+    <ul id='messages'></ul>
+  </div>
+  <script src='../../../node_modules/socket.io-client/dist/socket.io.js'></script>
+  <script>
+    window.onload = function onload() {
+      const socket = io('https://localhost:3001');
+      socket.on('news', function (data) {
+        console.log(data);
+      });
+
+      socket.on('updateTemplate', function onUpdateTemplate(data) {
+        console.log(data)
+        createMessage(JSON.stringify(data));
+      });
+      const $btn = document.getElementById('btn');
+      const $messages = document.getElementById('messages');
+
+      function sendMessage() {
+        socket.emit('updateTemplate', Math.random());
+      }
+
+      function createMessage(msg) {
+        const $li = document.createElement('li');
+        $li.textContent = msg;
+        $messages.appendChild($li);
+      }
+
+      $btn.addEventListener('click', sendMessage);
+    }
+  </script>
+</body>
+
+</html>
