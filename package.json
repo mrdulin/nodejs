@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.1.4",
+    "@types/eventsource": "^1.0.2",
     "@types/mocha": "^5.2.5",
     "@types/socket.io": "^1.4.38",
     "@types/ws": "^6.0.0",

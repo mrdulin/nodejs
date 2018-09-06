@@ -26,7 +26,7 @@ const server: https.Server = https.createServer(
 );
 
 const wss: WebSocket.Server = new WebSocket.Server({ server });
-const port: number = 3001;
+const port: number = 3000;
 
 wss.on('connection', function connection(socket: WebSocket) {
   socket.on('message', function message(data: WebSocket.Data) {
