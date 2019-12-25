@@ -14,10 +14,7 @@ console.log('爬虫程序开始运行...');
 
 //输入的网址是这样的：http://www.duotoo.com/xingganmeinv/33333.html 或者 http://www.duotoo.com/xingganmeinv/33333
 
-const categories = new Map([
-  ['性感美女', 'xingganmeinv'],
-  ['长腿美女', 'changtuimeinv']
-])
+const categories = new Map([['性感美女', 'xingganmeinv'], ['长腿美女', 'changtuimeinv']]);
 const host = `http://www.duotoo.com/${categories.get('性感美女')}`;
 let startTime, endTime, ajax, dataFinder, queryUrl;
 let argvUrl = process.argv[2];
@@ -40,13 +37,13 @@ class DataFinder {
     const $imgItems = $imgList.find('li > strong > a');
     const links = [];
     $imgItems.each((idx, item) => {
-      links.push($(item).attr('href'))
+      links.push($(item).attr('href'));
     });
     return links;
   }
   getPageSize(html) {
     const $ = cheerio.load(html);
-    const pageSize = this.pageSize = Number.parseInt($('#pageinfo').attr('pageinfo'), 10);
+    const pageSize = (this.pageSize = Number.parseInt($('#pageinfo').attr('pageinfo'), 10));
     return pageSize;
   }
   getPicUrl(html) {
@@ -60,8 +57,15 @@ class DataFinder {
   getAblumInfos(html) {
     const $ = cheerio.load(html);
     const title = $('.ArticleH1 > h1').text();
-    const updateDateTxt = $('.ArticleH1 > p').contents().filter((idx, el) => el.nodeType === 3).last().text();
-    const updateDate = updateDateTxt.split('|')[2].trim().split(' ')[1];
+    const updateDateTxt = $('.ArticleH1 > p')
+      .contents()
+      .filter((idx, el) => el.nodeType === 3)
+      .last()
+      .text();
+    const updateDate = updateDateTxt
+      .split('|')[2]
+      .trim()
+      .split(' ')[1];
     return { title, updateDate };
   }
 }
@@ -73,7 +77,8 @@ class Ajax {
 
   get(rUrl) {
     return new Promise((resolve, reject) => {
-      let urlstring = '', contentType = '';
+      let urlstring = '',
+        contentType = '';
       if (rUrl.indexOf('http:') !== -1) {
         urlstring = rUrl;
       } else {
@@ -98,8 +103,8 @@ class Ajax {
           } else {
             resolve(res);
           }
-        })
-    })
+        });
+    });
   }
 }
 
@@ -107,7 +112,7 @@ class Ajax {
  * @desc 获取相册id;
  * @returns {String} xingganmeinv/33333
  */
-const getAlbumKey = (fullUrl) => {
+const getAlbumKey = fullUrl => {
   return url.parse(fullUrl).pathname.split('.')[0];
 };
 
@@ -116,7 +121,7 @@ const fetchAllPicUrlsFromAlbum = res => {
   const pageSize = dataFinder.getPageSize(res.text);
   // console.log(pageSize);
   const pageId = queryUrl.replace('.html', '');
-  let pageUrls = [queryUrl]
+  let pageUrls = [queryUrl];
 
   for (let i = 2; i <= pageSize; i++) {
     pageUrls.push(`${pageId}_${i}.html`);
@@ -127,20 +132,24 @@ const fetchAllPicUrlsFromAlbum = res => {
   console.log(`开始下载<<<${updateDate}__${ablumId}__${ablumName}>>>套图...`);
 
   return new Promise((resolve, reject) => {
-
-    async.mapLimit(pageUrls, 10, (url, cb) => {
-      ajax.get(url).then(res => {
-        const picUrl = dataFinder.getPicUrl(res.text);
-        cb(null, picUrl);
-      })
-    }, (err, picUrls) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve({ picUrls, ablumName, ablumId, updateDate });
+    async.mapLimit(
+      pageUrls,
+      10,
+      (url, cb) => {
+        ajax.get(url).then(res => {
+          const picUrl = dataFinder.getPicUrl(res.text);
+          cb(null, picUrl);
+        });
+      },
+      (err, picUrls) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve({ picUrls, ablumName, ablumId, updateDate });
+        }
       }
-    })
-  })
+    );
+  });
 };
 
 const fetchAllPic = ({ picUrls, ablumName, ablumId, updateDate }) => {
@@ -148,39 +157,44 @@ const fetchAllPic = ({ picUrls, ablumName, ablumId, updateDate }) => {
   const writeData = (res, filename, url, cb) => {
     const writeStream = fs.createWriteStream(filename);
     res.pipe(writeStream);
-    writeStream.on('finish', () => {
-      cb(null, console.log(`${url}，下载完成.`));
-    }).on('error', cb);
-  }
+    writeStream
+      .on('finish', () => {
+        cb(null, console.log(`${url}，下载完成.`));
+      })
+      .on('error', cb);
+  };
   const savePic = (url, idx, cb) => {
     http.get(url, res => {
       const picName = path.basename(url);
       writeData(res, path.resolve(dirPath, picName), url, cb);
     });
-  }
+  };
 
   console.log(`保存图片中...`);
-  fs.access(dirPath, fs.constants.F_OK | fs.constants.W_OK, (err) => {
+  fs.access(dirPath, fs.constants.F_OK | fs.constants.W_OK, err => {
     if (err) {
       fs.mkdirSync(dirPath);
     }
-    async.eachOfLimit(picUrls, 10, savePic, (err) => {
+    async.eachOfLimit(picUrls, 10, savePic, err => {
       if (err) return console.error(err);
       endTime = Date.now();
       const totalTime = new Date(startTime - endTime);
       console.log('程序执行完毕!总耗时: %s秒', totalTime.getSeconds());
     });
-  })
+  });
 };
 
 const handleErr = err => {
   console.error(err);
-}
+};
 const main = () => {
   ajax = new Ajax({ host });
   dataFinder = new DataFinder();
-  ajax.get(queryUrl).then(fetchAllPicUrlsFromAlbum).then(fetchAllPic).catch(handleErr)
-}
+  ajax
+    .get(queryUrl)
+    .then(fetchAllPicUrlsFromAlbum)
+    .then(fetchAllPic)
+    .catch(handleErr);
+};
 
 main();
-

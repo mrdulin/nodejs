@@ -1,8 +1,8 @@
 {
-  "name": "training.nodejs",
+  "name": "nodejs-codelab",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "",
   "keywords": [],
   "license": "ISC",
   "scripts": {
