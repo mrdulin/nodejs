@@ -16,6 +16,7 @@
     "dl-toolkits": "^1.0.11",
     "http-server": "^0.12.3",
     "morgan": "^1.10.0",
+    "request": "^2.88.2",
     "rotating-file-stream": "^1.3.4",
     "socket.io": "^2.0.3",
     "superagent": "^3.6.0",

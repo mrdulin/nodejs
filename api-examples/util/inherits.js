@@ -5,16 +5,16 @@ var util = require('util');
 function Base() {
   this.name = 'base';
   this.year = 2016;
-  this.sayHello = function() {
+  this.sayHello = function () {
     console.log('Hello ' + this.name + ', ' + 'this is ' + this.year);
   };
 }
 
-Base.prototype.showName = function() {
+Base.prototype.showName = function () {
   console.log(this.name);
 };
 
-Base.prototype.showYear = function() {
+Base.prototype.showYear = function () {
   console.log(this.year);
 };
 

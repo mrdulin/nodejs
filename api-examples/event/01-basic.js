@@ -1,12 +1,12 @@
 var util = require('util'),
-    events = require('events');
+  events = require('events');
 
 var me = {
-    name: 'dul',
-    sex: 'male',
-    sayName: function () {
-        console.log(this.name);
-    }
+  name: 'dul',
+  sex: 'male',
+  sayName: function () {
+    console.log(this.name);
+  },
 };
 
 //
@@ -18,14 +18,15 @@ var me = {
 
 var emitter = new events.EventEmitter();
 
-emitter.on('ouch', function (data) {
+emitter
+  .on('ouch', function (data) {
     console.log(data);
-}).on('sleep', function (data) {
+  })
+  .on('sleep', function (data) {
     console.log(data);
-});
-
+  });
 
 emitter.emit('ouch', {
-    times: 'double',
-    actions: 'kick you ass'
+  times: 'double',
+  actions: 'kick you ass',
 });

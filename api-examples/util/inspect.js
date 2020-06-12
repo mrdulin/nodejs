@@ -4,7 +4,7 @@ const util = require('util');
 
 function Person() {
   this.name = 'person';
-  this.sayHello = function() {
+  this.sayHello = function () {
     return this.name;
   };
 }

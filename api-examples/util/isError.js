@@ -1,12 +1,10 @@
 const util = require('util');
 
-// 验证是否为错误类型
-
-console.log(util.isError(new Error()));
-console.log(util.isError(new TypeError()));
+console.log(util.types.isNativeError(new Error()));
+console.log(util.types.isNativeError(new TypeError()));
 console.log(
-  util.isError({
+  util.types.isNativeError({
     name: 'error',
-    message: 'an error occurred'
-  })
+    message: 'an error occurred',
+  }),
 );

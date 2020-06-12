@@ -1,5 +1,5 @@
 const util = require('util');
 
-console.log(util.isDate(new Date()));
-console.log(util.isDate({}));
-console.log(util.isDate(Date.now()));
+console.log(util.types.isDate(new Date()));
+console.log(util.types.isDate({}));
+console.log(util.types.isDate(Date.now()));
