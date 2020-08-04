@@ -3,15 +3,15 @@ import https from 'https';
 import SocketIO, { Socket } from 'socket.io';
 import fs from 'fs';
 import path from 'path';
-
-import { logger } from '../../utils';
+import { createLogger } from 'dl-toolkits';
+const logger = createLogger();
 
 const port: number = 3001;
 
 const server: https.Server = https.createServer(
   {
     cert: fs.readFileSync(path.resolve(__dirname, '../../../ssl/cert.pem')),
-    key: fs.readFileSync(path.resolve(__dirname, '../../../ssl/key.pem'))
+    key: fs.readFileSync(path.resolve(__dirname, '../../../ssl/key.pem')),
   },
   (req: http.IncomingMessage, res: http.ServerResponse) => {
     logger.info(`request.url: ${req.url}`);
@@ -25,7 +25,7 @@ const server: https.Server = https.createServer(
     const mimeTypes = {
       '.html': 'text/html',
       '.js': 'text/javascript',
-      '.json': 'application/json'
+      '.json': 'application/json',
     };
 
     const contentType = mimeTypes[extname] || 'application/octet-stream';
@@ -38,14 +38,14 @@ const server: https.Server = https.createServer(
       res.writeHead(200, { 'Content-Type': contentType });
       res.end(content, 'utf-8');
     });
-  }
+  },
 );
 
 const io: SocketIO.Server = SocketIO(server);
 
 io.on('connection', (socket: Socket) => {
   socket.emit('news', { hello: 'world' });
-  socket.on('updateTemplate', data => {
+  socket.on('updateTemplate', (data) => {
     logger.info(data);
     socket.emit('updateTemplate', { random: data });
   });
