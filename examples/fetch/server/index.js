@@ -11,8 +11,8 @@ const node_modules = path.resolve(__dirname, '../../../node_modules');
 
 app.use(
   bodyParser.urlencoded({
-    extended: true
-  })
+    extended: true,
+  }),
 );
 app.use(bodyParser.json());
 app.use(express.static(clientPath));
@@ -27,7 +27,7 @@ app.get('/getCity', (req, res) => {
     shanghai: '上海',
     shenzhen: '深圳',
     beijing: '北京',
-    hangzhou: '杭州'
+    hangzhou: '杭州',
   };
   res.status(200).json(city);
 });
@@ -51,7 +51,7 @@ app.post('/login', (req, res) => {
     ------WebKitFormBoundary4Q1naZ8gTf7YHoOx--
     */
   const form = new formidable.IncomingForm();
-  form.parse(req, function(err, fields, files) {
+  form.parse(req, function (err, fields, files) {
     res.status(200).json({ user: fields['user[name]'] });
   });
 });
@@ -60,7 +60,7 @@ app.get('/getImg', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/avatar.jpg'));
 });
 
-app.listen(port, err => {
+app.listen(port, (err) => {
   if (err) {
     process.stdout.write(`error: ${err.message}`);
   } else {
