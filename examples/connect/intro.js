@@ -39,11 +39,6 @@ const errorHandler = () => {
   };
 };
 
-app
-  .use(logger)
-  .use('/admin', restrict)
-  .use('/admin', admin)
-  .use(hello)
-  .use(errorHandler());
+app.use(logger).use('/admin', restrict).use('/admin', admin).use(hello).use(errorHandler());
 
 app.listen(3000);
